@@ -1,16 +1,19 @@
-# basic_authentication_flutter_challenge
+### What is Saqal?
 
-A new Flutter project.
+Saqal is an open-source organization to guide less experience developers through real-life challenges. Currently, we focus only on Flutter framework.
 
-## Getting Started
+### Why should I complete Saqal challenges?
 
-This project is a starting point for a Flutter application.
+Saqal challenges provide unique experience as they’re designed to fill untouched gaps by anyone at anywhere.
 
-A few resources to get you started if this is your first Flutter project:
+- Each challenge has a specific real-life use-case to implement such as basic authentication, OAuth2, file storage, push notification, payment gateways, offline, App security and more to solidify developer’s technical knowledge in different domains.
+- Saqal challenges should help you to interact with field experts such as backend engineers, and product owners who will guide you to improve your code and deliverables quality.
+- Saqal challenges should help to use real-life tools for communication, documentation and collaboration.
+- Saqal challenges should help to follow technical best practices such clean architecture, automation, testing, and documentation.
+- Saqal challenges focus on code quality more than nice looking screens.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+> Note: Don’t be overwhelmed! It will be covered piece by piece.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### What is the expected outcome?
+
+Saqal challenges hit different important areas from soft skills to proper deployment pipeline. So, expect to learn a lot from each challenge and remember `sky is the limit`.
