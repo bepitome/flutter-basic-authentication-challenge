@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import './screens/profile_screen.dart';
 
 void main() {
   /**
@@ -28,19 +28,16 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSwatch(
             primarySwatch: Colors.blue,
           ).copyWith(
-            secondary: Colors.deepOrange,
+            secondary: Colors.indigo,
           ),
         ),
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.purple,
+          primarySwatch: Colors.pink,
         ).copyWith(
-          secondary: Colors.deepOrange,
+          secondary: const Color.fromRGBO(255, 254, 229, 1),
         ),
       ),
-      home: Scaffold(
-          appBar: AppBar(
-        title: const Text('test'),
-      )),
+      home: const ProfileScreen(),
     );
   }
 }
