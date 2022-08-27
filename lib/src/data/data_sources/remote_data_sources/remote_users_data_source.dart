@@ -1,7 +1,7 @@
-import 'package:basic_authentication_flutter_challenge/data/constants/api_constants.dart';
-import 'package:basic_authentication_flutter_challenge/data/models/user_model.dart';
-import 'package:basic_authentication_flutter_challenge/domain/data_sources/remote_data_source.dart';
-import 'package:basic_authentication_flutter_challenge/domain/entities/user.dart';
+import 'package:basic_authentication_flutter_challenge/src/data/constants/api_constants.dart';
+import 'package:basic_authentication_flutter_challenge/src/data/models/user_model.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/data_sources/remote_data_source.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/entities/user.dart';
 
 class RemoteUsersDataSource extends RemoteDataSource {
   const RemoteUsersDataSource({required super.client});

@@ -1,4 +1,4 @@
-import 'package:basic_authentication_flutter_challenge/domain/entities/user.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/entities/user.dart';
 
 /// All Data Sources must implements this class, so that they
 /// become forced to provide us with the below functions.

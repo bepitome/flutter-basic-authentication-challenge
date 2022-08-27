@@ -1,8 +1,8 @@
-import 'package:basic_authentication_flutter_challenge/data/exceptions/http_exception.dart';
-import 'package:basic_authentication_flutter_challenge/domain/entities/user.dart';
-import 'package:basic_authentication_flutter_challenge/domain/repositories/users_repository.dart';
 import 'package:basic_authentication_flutter_challenge/injection.dart';
-import 'package:basic_authentication_flutter_challenge/services/auth_service.dart';
+import 'package:basic_authentication_flutter_challenge/src/services/auth_service.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/repositories/users_repository.dart';
+import 'package:basic_authentication_flutter_challenge/src/data/exceptions/http_exception.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/entities/user.dart';
 
 User? currentUser;
 

@@ -1,12 +1,13 @@
 import 'dart:convert';
-import 'package:basic_authentication_flutter_challenge/domain/clients/api_client.dart';
-import 'package:basic_authentication_flutter_challenge/domain/entities/user.dart';
-import 'package:basic_authentication_flutter_challenge/domain/repositories/users_repository.dart';
-import 'package:basic_authentication_flutter_challenge/services/access_token.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/clients/api_client.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/entities/user.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/repositories/users_repository.dart';
+import 'package:basic_authentication_flutter_challenge/src/services/access_token.dart';
 
 class AuthService {
   final APIClient client;
   final UsersRepository usersRepository;
+
   final AccessToken accessToken;
 
   const AuthService({

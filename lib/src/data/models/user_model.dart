@@ -1,4 +1,4 @@
-import 'package:basic_authentication_flutter_challenge/domain/entities/user.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/entities/user.dart';
 
 class UserModel extends User {
   final int? id;

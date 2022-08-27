@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'package:basic_authentication_flutter_challenge/data/constants/api_constants.dart';
-import 'package:basic_authentication_flutter_challenge/data/exceptions/http_exception.dart';
-import 'package:basic_authentication_flutter_challenge/domain/clients/api_client.dart';
-import 'package:basic_authentication_flutter_challenge/services/access_token.dart';
+import 'package:basic_authentication_flutter_challenge/src/data/constants/api_constants.dart';
+import 'package:basic_authentication_flutter_challenge/src/data/exceptions/http_exception.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/clients/api_client.dart';
+import 'package:basic_authentication_flutter_challenge/src/services/access_token.dart';
 import 'package:http/http.dart' as http;
 
 class HttpClient implements APIClient {

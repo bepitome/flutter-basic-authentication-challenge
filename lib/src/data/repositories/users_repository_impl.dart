@@ -1,5 +1,5 @@
-import 'package:basic_authentication_flutter_challenge/domain/entities/user.dart';
-import 'package:basic_authentication_flutter_challenge/domain/repositories/users_repository.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/entities/user.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/repositories/users_repository.dart';
 
 class UsersRepositoryImpl extends UsersRepository {
   const UsersRepositoryImpl({required super.remoteDataSource});
