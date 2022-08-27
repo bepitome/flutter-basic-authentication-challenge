@@ -1,5 +1,4 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
 
 class AccessToken {
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
@@ -14,13 +13,12 @@ class AccessToken {
     await _storage.write(key: 'access_token', value: newToken);
   }
 
-  Future<bool> isExpired() async {
+  Future<void> delete() async {
+    await _storage.delete(key: 'access_token');
+  }
+
+  Future<bool> get isValid async {
     final token = await read();
-    final decoded = JwtDecoder.tryDecode(token);
-    if (decoded == null) {
-      return true;
-    } else {
-      return JwtDecoder.isExpired(token);
-    }
+    return token.isNotEmpty;
   }
 }

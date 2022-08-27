@@ -24,8 +24,8 @@ Future<void> injecDependencies() async {
     ),
   );
 
-  const authService = AuthService(
-    client: HttpClient(accessToken: accessToken),
+  final authService = AuthService(
+    client: const HttpClient(accessToken: accessToken),
     usersRepository: usersRepo,
     accessToken: accessToken,
   );
