@@ -1,0 +1,3 @@
+enum ExceptionType {
+  ERROR, NETWORK, DATABASE, PLATFORM
+}
