@@ -1,15 +1,19 @@
+import 'package:basic_auth_challenge/presentation/auth/auth_cubit.dart';
+import 'package:basic_auth_challenge/presentation/home/home_page.dart';
 import 'package:basic_auth_challenge/presentation/login/bloc/login_cubit.dart';
+import 'package:basic_auth_challenge/presentation/login/bloc/login_state.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MyLogin extends StatefulWidget {
-  const MyLogin({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  _MyLoginState createState() => _MyLoginState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _MyLoginState extends State<MyLogin> {
+class _LoginScreenState extends State<LoginScreen> {
   late TextEditingController usernameController;
   late TextEditingController passwordController;
 
@@ -17,13 +21,26 @@ class _MyLoginState extends State<MyLogin> {
   void initState() {
     usernameController = TextEditingController();
     passwordController = TextEditingController();
+
+    if(kDebugMode)
+      {
+        usernameController.text = "wkigelman0";
+        passwordController.text = "RzxNePWmk1U";
+      }
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener(
-      listener: (BuildContext context, state) {},
+    return BlocListener<LoginCubit, LoginState>(
+      listener: (BuildContext context, state) {
+        if(state is LoginSuccessState)
+          {
+            context.read<AuthCubit>().onLoggedIn();
+            Navigator.pushAndRemoveUntil(context,
+                MaterialPageRoute(builder: (_) => HomePage()), (route) => false);
+          }
+      },
       child: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -35,7 +52,7 @@ class _MyLoginState extends State<MyLogin> {
             Container(
               padding: const EdgeInsets.only(left: 35, top: 80),
               child: const Text(
-                "Welcome\nBack",
+                "Welcome",
                 style: TextStyle(color: Colors.white, fontSize: 33),
               ),
             ),

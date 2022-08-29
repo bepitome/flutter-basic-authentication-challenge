@@ -19,8 +19,8 @@ class AppNetworkServiceImpl extends AppNetworkService {
       final Response response = await client.dio.get(NetworkConstants.allUsers);
 
       if (response.data != null) {
-        var list = jsonDecode(response.data['result']) as List;
-        return list.map((e) => UserDto.fromJson(e)).toList();
+        final results = UserResultDto.fromJson(response.data);
+        return results.data;
       } else {
         throw ExceptionUtils.handleException(response);
       }

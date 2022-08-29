@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'app_text_theme.dart';
 
-class AppTheme
-{
+class AppTheme {
   ThemeData get lightTheme {
     return ThemeData(
       primarySwatch: Palette.primaryColorSwatch,
@@ -15,18 +14,21 @@ class AppTheme
       scaffoldBackgroundColor: Palette.backgroundColor,
       appBarTheme: appBarTheme,
       visualDensity: VisualDensity.adaptivePlatformDensity,
-      textTheme:  AppTextTheme(language: 'en').reasonableFont,
+      textTheme: AppTextTheme(language: 'en').reasonableFont,
     );
   }
 
   AppBarTheme get appBarTheme {
     return AppBarTheme(
-      titleTextStyle: AppTextTheme(language: 'en').reasonableFont.headline6,
-      backgroundColor: Palette.secondary,
+      titleTextStyle: AppTextTheme(language: 'en')
+          .reasonableFont
+          .headline6
+          ?.copyWith(color: Colors.white),
+      backgroundColor: Palette.primary,
       elevation: 1,
       centerTitle: true,
       iconTheme: const IconThemeData(
-        color: Palette.primaryColorSwatch,
+        color: Colors.white,
       ),
     );
   }
