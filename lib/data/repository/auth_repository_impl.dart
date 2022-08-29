@@ -27,9 +27,11 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<Login> login(String username, String password) {
-    return networkService
-        .login(username, password)
-        .then((value) => Login.fromApiModel(value));
+    return networkService.login(username, password).then((value) async {
+      await preferenceManager.setToken(value.token);
+      await preferenceManager.setUserId(value.id);
+      return Login.fromApiModel(value);
+    });
   }
 
   @override
@@ -40,5 +42,10 @@ class AuthRepositoryImpl extends AuthRepository {
   @override
   Future<void> logout() {
     return preferenceManager.deleteOnLogout();
+  }
+
+  @override
+  Future<int?> getUserId() {
+    return preferenceManager.getUserId();
   }
 }

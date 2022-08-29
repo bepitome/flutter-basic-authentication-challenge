@@ -3,10 +3,23 @@ import 'package:json_annotation/json_annotation.dart';
 part 'user_dto.g.dart';
 
 @JsonSerializable()
+class UserResultDto
+{
+  @JsonKey(name: 'result')
+  final List<UserDto> data;
+
+  UserResultDto(this.data);
+
+  factory UserResultDto.fromJson(Map<String, dynamic> json) => _$UserResultDtoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserResultDtoToJson(this);
+}
+
+@JsonSerializable()
 class UserDto {
 
   @JsonKey(name: 'id')
-  final String id;
+  final int id;
 
   @JsonKey(name: 'first_name')
   final String firstName;

@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 
 class AuthInterceptor extends Interceptor {
   final AsyncValueGetter<String?> accessToken;
-  final AsyncValueGetter<String?> id;
+  final AsyncValueGetter<int?> id;
 
   AuthInterceptor({
     required this.id,
@@ -19,7 +19,7 @@ class AuthInterceptor extends Interceptor {
     // access token
     final String token = await accessToken() ?? '';
     if (token.isNotEmpty) {
-      options.headers.putIfAbsent('Authorization', () => 'Bearer $token');
+      options.headers.putIfAbsent('Authorization', () => '$token');
     }
 
     options.headers.putIfAbsent('X-Device-UUID', () => id);

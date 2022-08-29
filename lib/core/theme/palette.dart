@@ -20,7 +20,7 @@ class Palette {
   static const red = Color(0xFFFF5A4E);
   static const red1 = Color(0xFFFF5652);
 
-  static const backgroundColor = secondary;
+  static const backgroundColor = gray4;
 
   static const primaryColorSwatch = MaterialColor(
     _primaryColor,

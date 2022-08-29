@@ -28,7 +28,11 @@ class _AuthAppState extends State<AuthApp> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => AuthCubit(isLoginUseCase: injector()),
+      create: (_) => AuthCubit(
+          isLoginUseCase: injector(),
+          logoutUseCase: injector(),
+          getUserIdUseCase: injector())
+        ..checkUserLoggedIn(),
       child: Sizer(
         builder: (context, orientation, deviceType) => MaterialApp(
           navigatorKey: widget.navigator,
@@ -40,5 +44,4 @@ class _AuthAppState extends State<AuthApp> {
       ),
     );
   }
-
 }

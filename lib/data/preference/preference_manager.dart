@@ -21,14 +21,14 @@ class PreferenceManager {
   }
 
   // User Id
-  Future<String?> getUserId() async {
+  Future<int?> getUserId() async {
     final SharedPreferences prefs = _prefs;
-    return prefs.getString(_USER_ID);
+    return prefs.getInt(_USER_ID);
   }
 
-  Future<void> setUserId(String userId) async {
+  Future<void> setUserId(int userId) async {
     final SharedPreferences prefs = _prefs;
-    await prefs.setString(_USER_ID, userId);
+    await prefs.setInt(_USER_ID, userId);
   }
 
   final _TOKEN = 'token';

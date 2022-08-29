@@ -1,6 +1,7 @@
 import 'package:basic_auth_challenge/data/repository/auth_repository_impl.dart';
 import 'package:basic_auth_challenge/domain/repository/auth_repository.dart';
 import 'package:basic_auth_challenge/domain/usecases/get_user_details_usecase.dart';
+import 'package:basic_auth_challenge/domain/usecases/get_user_id_usecase.dart';
 import 'package:basic_auth_challenge/domain/usecases/get_users_usecase.dart';
 import 'package:basic_auth_challenge/domain/usecases/is_login_usecase.dart';
 import 'package:basic_auth_challenge/domain/usecases/login_usecase.dart';
@@ -32,6 +33,9 @@ mixin DomainLayerInjection {
     );
     injector.registerLazySingleton<LogoutUseCase>(
       () => LogoutUseCase(injector()),
+    );
+    injector.registerLazySingleton<GetUserIdUseCase>(
+          () => GetUserIdUseCase(injector()),
     );
   }
 }
