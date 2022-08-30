@@ -7,6 +7,7 @@ import 'package:basic_authentication_flutter_challenge/src/services/auth_service
 import 'package:basic_authentication_flutter_challenge/src/services/current_auth_user.dart';
 import 'package:basic_authentication_flutter_challenge/src/services/local_storage.dart';
 import 'package:basic_authentication_flutter_challenge/src/services/app_router.dart';
+import 'package:basic_authentication_flutter_challenge/src/services/notifier.dart';
 import 'package:basic_authentication_flutter_challenge/src/services/tokens_service.dart';
 import 'package:get_it/get_it.dart';
 
@@ -23,6 +24,7 @@ Future<void> injecDependencies() async {
   await LocalStorage.init();
   const storage = LocalStorage();
   const router = AppRouter();
+  const notifier = Notifier();
   const httpClient = HttpClient();
   const usersRepo = UsersRepositoryImpl(
     remoteSource: RemoteUsersDataSource(client: httpClient),
@@ -40,6 +42,7 @@ Future<void> injecDependencies() async {
 
   // Register the dependencies
   locator.registerSingleton<AppRouter>(router);
+  locator.registerSingleton<Notifier>(notifier);
   locator.registerSingleton<LocalStorage>(storage);
   locator.registerSingleton<TokensService>(tokens);
   locator.registerSingleton<HttpClient>(httpClient);

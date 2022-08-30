@@ -5,6 +5,7 @@ import 'package:basic_authentication_flutter_challenge/src/presentation/views/te
 import 'package:basic_authentication_flutter_challenge/src/services/app_router.dart';
 import 'package:basic_authentication_flutter_challenge/src/services/auth_service.dart';
 import 'package:basic_authentication_flutter_challenge/src/services/current_auth_user.dart';
+import 'package:basic_authentication_flutter_challenge/src/services/notifier.dart';
 import 'package:stacked/stacked.dart';
 
 class HomeViewModel extends BaseViewModel {
@@ -22,8 +23,7 @@ class HomeViewModel extends BaseViewModel {
       final currentUserId = await locator<CurrenAuthtUser>().getLocalUserId();
       currentUser = await usersRepo.getUser(currentUserId);
     } catch (e) {
-      // TODO for future
-      // Show alert message to the user
+      locator<Notifier>().show('Couldn\'t get your details: ${e.toString()}');
     }
     _setLoading(false);
   }

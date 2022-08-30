@@ -2,6 +2,7 @@ import 'package:basic_authentication_flutter_challenge/injection.dart';
 import 'package:basic_authentication_flutter_challenge/src/domain/entities/user.dart';
 import 'package:basic_authentication_flutter_challenge/src/domain/repositories/users_repository.dart';
 import 'package:basic_authentication_flutter_challenge/src/services/current_auth_user.dart';
+import 'package:basic_authentication_flutter_challenge/src/services/notifier.dart';
 import 'package:stacked/stacked.dart';
 
 class TeammatesViewModel extends BaseViewModel {
@@ -21,8 +22,7 @@ class TeammatesViewModel extends BaseViewModel {
       final currentUser = await usersRepo.getUser(currentUserId);
       teammates = await usersRepo.getUsersInCompany(currentUser.company);
     } catch (e) {
-      // TODO for future
-      // Show alert message to the user
+      locator<Notifier>().show('Couldn\'t load emplyees data: ${e.toString()}');
     }
     _setLoading(false);
   }

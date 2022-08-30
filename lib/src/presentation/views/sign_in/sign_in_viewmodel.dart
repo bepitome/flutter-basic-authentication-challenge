@@ -1,5 +1,6 @@
 import 'package:basic_authentication_flutter_challenge/injection.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:basic_authentication_flutter_challenge/src/services/notifier.dart';
+import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:basic_authentication_flutter_challenge/src/services/auth_service.dart';
 
@@ -18,8 +19,7 @@ class SignInViewModel extends BaseViewModel {
           passwordController.text,
         );
       } catch (e) {
-        // TODO for future
-        // Show alert to the user
+        locator<Notifier>().show('Couldn\'t authenticate: ${e.toString()}');
       }
       _setLoading(false);
     }
