@@ -21,17 +21,23 @@ class AuthService extends ChangeNotifier {
     // Do basic auth
     String base64Encoded = base64.encode(utf8.encode('$username:$password'));
     await tokens.updateAccessTokenLocally('Basic $base64Encoded');
-    final result = await httpClient.post(endPoint: kApiLoginEndPoint);
+    try {
+      final result = await httpClient.post(endPoint: kApiLoginEndPoint);
 
-    // Save the new token locally
-    final token = result[kApiTokenKey] as String;
-    await tokens.updateAccessTokenLocally(token);
+      // Save the new token locally
+      final token = result[kApiTokenKey] as String;
+      await tokens.updateAccessTokenLocally(token);
 
-    // Save user id locally
-    final userId = result[kApiUserIdKey] as int;
-    await authUser.updateUserIdLocally(userId);
-
-    notifyListeners();
+      // Save user id locally
+      final userId = result[kApiUserIdKey] as int;
+      await authUser.updateUserIdLocally(userId);
+    } catch (e) {
+      // In case of any error, clear the token
+      await tokens.deleteAccessTokenLocally();
+      rethrow;
+    } finally {
+      notifyListeners();
+    }
   }
 
   Future<void> logout() async {
