@@ -1,37 +1,41 @@
 import 'dart:convert';
-import 'package:basic_authentication_flutter_challenge/src/domain/clients/api_client.dart';
-import 'package:basic_authentication_flutter_challenge/src/domain/entities/user.dart';
-import 'package:basic_authentication_flutter_challenge/src/domain/repositories/users_repository.dart';
-import 'package:basic_authentication_flutter_challenge/src/services/access_token.dart';
-import 'package:flutter/material.dart';
+import 'package:basic_authentication_flutter_challenge/src/data/constants/api_constants.dart';
+import 'package:basic_authentication_flutter_challenge/src/data/helper_classes/http_client.dart';
+import 'package:basic_authentication_flutter_challenge/src/services/current_auth_user.dart';
+import 'package:basic_authentication_flutter_challenge/src/services/tokens_service.dart';
+import 'package:flutter/foundation.dart';
 
 class AuthService extends ChangeNotifier {
-  final APIClient client;
-  final UsersRepository usersRepository;
-  final AccessToken accessToken;
+  final httpClient = const HttpClient();
+  final TokensService tokens;
+  final CurrenAuthtUser authUser;
 
-  AuthService({
-    required this.client,
-    required this.usersRepository,
-    required this.accessToken,
-  });
+  AuthService({required this.tokens, required this.authUser});
 
   Future<bool> isAuthenticated() async {
-    return await accessToken.isValid;
+    final token = await tokens.getLocalAccessToken();
+    return token.isNotEmpty;
   }
 
-  Future<User> login(String username, String password) async {
+  Future<void> login(String username, String password) async {
+    // Do basic auth
     String base64Encoded = base64.encode(utf8.encode('$username:$password'));
-    await accessToken.update('Basic $base64Encoded');
-    final result = await client.post(endPoint: '/auth/login');
-    final newToken = result['accessToken'];
-    await accessToken.update(newToken);
+    await tokens.updateAccessTokenLocally('Basic $base64Encoded');
+    final result = await httpClient.post(endPoint: kApiLoginEndPoint);
+
+    // Save the new token locally
+    final token = result[kApiTokenKey] as String;
+    await tokens.updateAccessTokenLocally(token);
+
+    // Save user id locally
+    final userId = result[kApiUserIdKey] as int;
+    await authUser.updateUserIdLocally(userId);
+
     notifyListeners();
-    return await usersRepository.getUser(result['id']);
   }
 
   Future<void> logout() async {
-    await accessToken.delete();
+    await tokens.deleteAccessTokenLocally();
     notifyListeners();
   }
 }

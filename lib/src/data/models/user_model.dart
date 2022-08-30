@@ -1,3 +1,4 @@
+import 'package:basic_authentication_flutter_challenge/src/data/constants/api_constants.dart';
 import 'package:basic_authentication_flutter_challenge/src/domain/entities/user.dart';
 
 class UserModel extends User {
@@ -13,27 +14,27 @@ class UserModel extends User {
     required super.gender,
   });
 
-  factory UserModel.fromMap(Map<String, dynamic> json) {
+  factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-      id: json['id'] as int?,
-      firstName: json['firstName'] as String?,
-      lastName: json['lastName'] as String?,
-      email: json['email'] as String?,
-      username: json['username'] as String?,
-      company: json['company'] as String?,
-      gender: json['gender'] as String?,
+      id: map[kApiUserIdKey] as int?,
+      firstName: map[kApiUserFirstNameKey] as String? ?? 'Not set',
+      lastName: map[kApiUserLastNameKey] as String? ?? 'Not set',
+      email: map[kApiUserEmailKey] as String? ?? 'Not set',
+      username: map[kApiUsernameKey] as String? ?? 'Not set',
+      company: map[kApiUserCompanyKey] as String? ?? 'Not set',
+      gender: map[kApiUserGenderKey] as String? ?? 'Not set',
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
-      'firstName': firstName,
-      'lastName': lastName,
-      'email': email,
-      'username': username,
-      'company': company,
-      'gender': gender,
+      kApiUserIdKey: id,
+      kApiUserFirstNameKey: firstName,
+      kApiUserLastNameKey: lastName,
+      kApiUserEmailKey: email,
+      kApiUsernameKey: username,
+      kApiUserCompanyKey: company,
+      kApiUserGenderKey: gender,
     };
   }
 }

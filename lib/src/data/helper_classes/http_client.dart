@@ -1,27 +1,29 @@
 import 'dart:convert';
+import 'package:basic_authentication_flutter_challenge/injection.dart';
 import 'package:basic_authentication_flutter_challenge/src/data/constants/api_constants.dart';
 import 'package:basic_authentication_flutter_challenge/src/data/exceptions/http_exception.dart';
 import 'package:basic_authentication_flutter_challenge/src/domain/clients/api_client.dart';
-import 'package:basic_authentication_flutter_challenge/src/services/access_token.dart';
+import 'package:basic_authentication_flutter_challenge/src/services/tokens_service.dart';
 import 'package:http/http.dart' as http;
 
-class HttpClient implements APIClient {
-  final AccessToken accessToken;
+/// A helper class for wrapping the 3rd-party http package
 
-  const HttpClient({required this.accessToken});
+class HttpClient implements APIClient {
+  const HttpClient();
 
   @override
   Future<dynamic> get({
     required String endPoint,
     Map<String, dynamic>? query,
   }) async {
-    Uri url = Uri.parse('$kBaseUrl$endPoint').replace(
+    final auth = locator<TokensService>();
+    Uri url = Uri.parse('$kApiBaseUrl$endPoint').replace(
       queryParameters: query,
     );
     final headers = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': await accessToken.read(),
+      'Authorization': await auth.getLocalAccessToken(),
     };
     final response = await http.get(url, headers: headers);
     final body = jsonDecode(response.body);
@@ -41,13 +43,14 @@ class HttpClient implements APIClient {
     required String endPoint,
     Map<String, dynamic>? query,
   }) async {
-    Uri url = Uri.parse('$kBaseUrl$endPoint').replace(
+    final auth = locator<TokensService>();
+    Uri url = Uri.parse('$kApiBaseUrl$endPoint').replace(
       queryParameters: query,
     );
     final headers = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': await accessToken.read(),
+      'Authorization': await auth.getLocalAccessToken(),
     };
     final response = await http.post(url, headers: headers);
     final body = jsonDecode(response.body);

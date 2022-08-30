@@ -9,13 +9,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # Will use http for... well, http calls :)
   http: ^0.13.5
-  # Useful to know if token is expired
-  jwt_decoder: ^2.0.1
-  # Be as secure as possible 🤓
-  flutter_secure_storage: ^6.0.0
-  # Use get_it as a service locator, to access the injected dependencies
+  # Local Storage
+  hive: ^2.2.3
+  # Will use get_it as a service locator, to access the injected dependencies
   get_it: ^7.2.0
+  # Will use Stacked for MVVM implementaion 
+  stacked: ^2.3.15
+  # To access app documents directory
+  path_provider: ^2.0.11
 
 dev_dependencies:
   flutter_test:

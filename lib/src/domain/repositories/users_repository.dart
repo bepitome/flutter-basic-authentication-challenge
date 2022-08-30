@@ -1,10 +1,18 @@
+import 'package:basic_authentication_flutter_challenge/src/data/data_sources/local_data_sources/local_users_data_source.dart';
+import 'package:basic_authentication_flutter_challenge/src/data/data_sources/remote_data_sources/remote_users_data_source.dart';
 import 'package:basic_authentication_flutter_challenge/src/domain/entities/user.dart';
-import 'package:basic_authentication_flutter_challenge/src/domain/repositories/repository.dart';
 
-abstract class UsersRepository extends Repository {
-  const UsersRepository({required super.remoteDataSource});
+abstract class UsersRepository {
+  final RemoteUsersDataSource remoteSource;
+  final LocalUsersDataSource localSource;
+
+  const UsersRepository({
+    required this.remoteSource,
+    required this.localSource,
+  });
 
   Future<User> getUser(int id);
   Future<List<User>> getAllUsers();
-  Future<List<User>> getUsersWhere(Map<String, dynamic> query);
+  Future<void> updateOrCreateUser(int id, Map<String, dynamic> value);
+  Future<List<User>> getUsersInCompany(String company);
 }

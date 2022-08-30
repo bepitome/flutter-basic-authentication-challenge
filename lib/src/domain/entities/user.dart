@@ -1,5 +1,5 @@
 class User {
-  final String? firstName, lastName, email, username, company, gender;
+  final String firstName, lastName, email, username, company, gender;
 
   const User({
     required this.firstName,
