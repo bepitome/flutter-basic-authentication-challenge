@@ -17,3 +17,6 @@ Saqal challenges provide unique experience as they’re designed to fill untouch
 ### What is the expected outcome?
 
 Saqal challenges hit different important areas from soft skills to proper deployment pipeline. So, expect to learn a lot from each challenge and remember `the sky is the limit`.
+
+---
+#### To start the challenge click [here](https://github.com/bepitome/flutter-basic-authentication-challenge/blob/main/CHALLENGE.md)
