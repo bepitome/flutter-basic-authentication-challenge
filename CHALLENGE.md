@@ -2,14 +2,14 @@
 
 #### Tasks to complete
 
-- Fork [this repository]() and create a new branch with prefix of your github username and challenge name. For example if my github account is `mutairibassam` thus my branch should be like `mutairibassam/basic-authentication`.
+- Fork [this repository](https://github.com/bepitome/flutter-basic-authentication-challenge) and create a new branch with prefix of your github username and challenge name. For example if my github account is `mutairibassam` thus my branch should be like `mutairibassam/basic-authentication`.
 - Authenticate successfully with the below account using [Basic authentication](https://en.wikipedia.org/wiki/Basic_access_authentication).
   - username: jarmatage8
   - password: xwNEVYPnI
 - Display user profile (first name, last name, email, username, company, gender).
 - Add teammate list (display all employees who are working at the same company as a list).
 
-_To download challenge postman collection, [click here](http://161.35.99.225/api/v1/public/postman)_
+_To download challenge APIs, [click here](http://161.35.99.225/api/v1/public/postman)_
 
 <u>Note: We don’t expect something perfect. Just submit what you can do to evaluate your current skills and take you to the next step.</u>
 
