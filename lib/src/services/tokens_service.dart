@@ -1,5 +1,6 @@
 import 'package:basic_authentication_flutter_challenge/src/data/constants/local_storage_constants.dart';
-import 'package:basic_authentication_flutter_challenge/src/services/local_storage.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/storage/local_storage.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/storage/local_storage_pool.dart';
 
 class TokensService {
   final LocalStorage storage;

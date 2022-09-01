@@ -1,7 +1,8 @@
 import 'package:basic_authentication_flutter_challenge/injection.dart';
 import 'package:basic_authentication_flutter_challenge/src/data/constants/local_storage_constants.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/storage/local_storage.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/storage/local_storage_pool.dart';
 import 'package:basic_authentication_flutter_challenge/src/services/auth_service.dart';
-import 'package:basic_authentication_flutter_challenge/src/services/local_storage.dart';
 
 class CurrenAuthtUser {
   final LocalStorage storage;
