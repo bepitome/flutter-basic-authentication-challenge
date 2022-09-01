@@ -1,3 +1,8 @@
+import 'package:provider/provider.dart';
+
+import '../models/profile.dart';
+import '../providers/profiles.dart';
+
 import '../widgets/main_profile.dart';
 import 'package:flutter/material.dart';
 import '../widgets/profile_tile.dart';
@@ -11,17 +16,53 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  Profile profile = Profile.dummyProfile;
+  List<Profile> profiles = [];
+  Future<void> _getProfiles() async {
+    await Provider.of<Profiles>(context, listen: false).teamProfiles();
+    setState(() {
+      profiles = Provider.of<Profiles>(context, listen: false).profiles;
+    });
+  }
+
+  Future<void> _getProfile() async {
+    await Provider.of<Profiles>(context, listen: false).loggedinUserProfile();
+    setState(() {
+      profile = Provider.of<Profiles>(context, listen: false).profile;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    _getProfile();
+    _getProfiles();
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
+    //final test = Provider.of<Profiles>(context, listen: false).teamProfiles();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
       ),
-      body: Column(children: [
-        MainProfile(),
-        SizedBox(height: 10),
-        ProfileTile(),
-      ]),
+      body: Column(
+        children: [
+          MainProfile(profile),
+          SizedBox(height: 10),
+          Expanded(
+            child: ListView.builder(
+              itemCount: profiles.length,
+              itemBuilder: (ctx, i) => ProfileTile(profiles[i]),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

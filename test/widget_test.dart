@@ -1,3 +1,7 @@
+import 'package:flutter_test/flutter_test.dart';
+
 void main() {
-  /// no need for test cases in this challenge
+  test('test name', () {
+    expect(true, true);
+  });
 }

@@ -1,12 +1,23 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
+import '../models/profile.dart';
 
 class ProfileTile extends StatelessWidget {
-  const ProfileTile({Key? key}) : super(key: key);
+  final Profile profile;
+  const ProfileTile(this.profile, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ListTile(
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: 10,
+        vertical: 10,
+      ),
+      leading: const CircleAvatar(
+        backgroundImage: AssetImage('assets/images/profile-placeholder.png'),
+      ),
+      title: Text('${profile.lastName}, ${profile.firstName}'),
+      subtitle: Text('Email: ${profile.email}\nCompany: ${profile.company}'),
+      onTap: () {},
+    );
   }
 }

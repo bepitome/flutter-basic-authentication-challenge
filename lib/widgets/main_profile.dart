@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import '../providers/profile.dart';
+import '../models/profile.dart';
 
 class MainProfile extends StatelessWidget {
-  const MainProfile({Key? key}) : super(key: key);
+  final Profile profile;
+  const MainProfile(this.profile, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final mainProfile = Profile.dummyProfile;
+    final mainProfile = profile;
     return Container(
       height: 300,
       margin: const EdgeInsets.all(10),
@@ -27,16 +28,16 @@ class MainProfile extends StatelessWidget {
       ),
       child: Column(
         children: [
-          SizedBox(height: 10),
-          CircleAvatar(
+          const SizedBox(height: 10),
+          const CircleAvatar(
             radius: 50,
             foregroundImage:
                 AssetImage('assets/images/profile-placeholder.png'),
           ),
-          Text('${mainProfile.username}'),
-          SizedBox(height: 20),
+          Text(mainProfile.username),
+          const SizedBox(height: 20),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             alignment: Alignment.center,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,

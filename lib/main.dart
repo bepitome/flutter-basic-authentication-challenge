@@ -1,5 +1,11 @@
+import 'package:provider/provider.dart';
+
+import '../screens/auth_screen.dart';
 import 'package:flutter/material.dart';
 import './screens/profile_screen.dart';
+import './providers/auth.dart';
+import './models/profile.dart';
+import './providers/profiles.dart';
 
 void main() {
   /**
@@ -15,29 +21,43 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Shop App',
-      theme: ThemeData(
-        fontFamily: 'Lato',
-        textTheme: const TextTheme(
-          headline6: TextStyle(
-            color: Colors.white,
-          ),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (ctx) => Auth(),
         ),
-        buttonTheme: ButtonThemeData(
-          colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: Colors.blue,
-          ).copyWith(
-            secondary: Colors.indigo,
+        ChangeNotifierProxyProvider<Auth, Profiles>(
+          create: (ctx) => Profiles(null, null, [], null),
+          update: (ctx, auth, profiles) => Profiles(auth.token, auth.userId,
+              profiles!.profiles, profiles.mainProfile),
+        )
+      ],
+      child: Consumer<Auth>(
+        builder: (ctx, auth, _) => MaterialApp(
+          title: 'Profile App',
+          theme: ThemeData(
+            fontFamily: 'Lato',
+            textTheme: const TextTheme(
+              headline6: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+            buttonTheme: ButtonThemeData(
+              colorScheme: ColorScheme.fromSwatch(
+                primarySwatch: Colors.blue,
+              ).copyWith(
+                secondary: Colors.indigo,
+              ),
+            ),
+            colorScheme: ColorScheme.fromSwatch(
+              primarySwatch: Colors.pink,
+            ).copyWith(
+              secondary: const Color.fromRGBO(255, 254, 229, 1),
+            ),
           ),
-        ),
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.pink,
-        ).copyWith(
-          secondary: const Color.fromRGBO(255, 254, 229, 1),
+          home: auth.isAuth ? const ProfileScreen() : const AuthScreen(),
         ),
       ),
-      home: const ProfileScreen(),
     );
   }
 }

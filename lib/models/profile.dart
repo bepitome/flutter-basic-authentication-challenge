@@ -1,12 +1,3 @@
-//             "id": 8013930,
-//             "first_name": "Webster",
-//             "last_name": "Kigelman",
-//             "email": "wkigelman0@skyrock.com",
-//             "username": "wkigelman0",
-//             "company": "Yata",
-//             "password": "RzxNePWmk1U",
-//             "gender": "Male"
-
 enum Gender {
   male,
   female,
@@ -34,11 +25,11 @@ class Profile {
   static Profile get dummyProfile {
     return Profile(
       id: 1,
-      firstName: 'yousif',
-      lastName: 'alarfaj',
+      firstName: 'test',
+      lastName: 'test',
       email: 'test@test.com',
-      username: 'ymaarfaj',
-      company: 'Aramco',
+      username: 'test',
+      company: 'test',
       gender: Gender.male,
     );
   }
