@@ -1,11 +1,11 @@
-import 'package:basic_authentication_flutter_challenge/src/domain/storage/local_storage.dart';
-import 'package:basic_authentication_flutter_challenge/src/domain/storage/local_storage_pool.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/clients/local_storage_client.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/clients/local_storage_pool.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:hive/hive.dart';
 
 /// A helper class for wrapping the 3rd-party package
 
-class HiveStorage implements LocalStorage {
+class HiveStorage implements LocalStorageClient {
   const HiveStorage();
 
   static Future init() async {

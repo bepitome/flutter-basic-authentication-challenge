@@ -1,6 +1,6 @@
 import 'package:basic_authentication_flutter_challenge/src/data/models/user_model.dart';
 import 'package:basic_authentication_flutter_challenge/src/domain/data_sources/local/local_data_source.dart';
-import 'package:basic_authentication_flutter_challenge/src/domain/storage/local_storage_pool.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/clients/local_storage_pool.dart';
 
 class LocalUsersDataSource extends LocalDataSource {
   const LocalUsersDataSource({required super.storage});

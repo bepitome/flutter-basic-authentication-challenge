@@ -1,16 +1,20 @@
 import 'dart:convert';
+import 'package:basic_authentication_flutter_challenge/src/data/clients/http_client.dart';
 import 'package:basic_authentication_flutter_challenge/src/data/constants/api_constants.dart';
-import 'package:basic_authentication_flutter_challenge/src/data/helper_classes/http_client.dart';
 import 'package:basic_authentication_flutter_challenge/src/services/current_auth_user.dart';
 import 'package:basic_authentication_flutter_challenge/src/services/tokens_service.dart';
 import 'package:flutter/foundation.dart';
 
 class AuthService extends ChangeNotifier {
-  final httpClient = const HttpClient();
+  final HttpClient httpClient;
   final TokensService tokens;
   final CurrenAuthtUser authUser;
 
-  AuthService({required this.tokens, required this.authUser});
+  AuthService({
+    required this.httpClient,
+    required this.tokens,
+    required this.authUser,
+  });
 
   Future<bool> isAuthenticated() async {
     final token = await tokens.getLocalAccessToken();

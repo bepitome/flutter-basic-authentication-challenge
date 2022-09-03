@@ -1,7 +1,7 @@
-import 'package:basic_authentication_flutter_challenge/src/domain/clients/api_client.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/clients/remote_api_client.dart';
 
 abstract class RemoteDataSource {
-  final APIClient client;
+  final RemoteAPIClient client;
 
   const RemoteDataSource({required this.client});
 }

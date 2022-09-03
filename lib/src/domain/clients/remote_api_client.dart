@@ -1,5 +1,5 @@
-abstract class APIClient {
-  const APIClient();
+abstract class RemoteAPIClient {
+  const RemoteAPIClient();
 
   Future<dynamic> get({
     required String endPoint,

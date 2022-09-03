@@ -1,9 +1,9 @@
-import 'package:basic_authentication_flutter_challenge/src/domain/storage/local_storage_pool.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/clients/local_storage_pool.dart';
 
 /// Every local storage should implement this class
 
-abstract class LocalStorage {
-  const LocalStorage();
+abstract class LocalStorageClient {
+  const LocalStorageClient();
 
   Future<dynamic> read({required String key, required LocalStoragePool from});
 

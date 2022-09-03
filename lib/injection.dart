@@ -1,13 +1,13 @@
+import 'package:basic_authentication_flutter_challenge/src/data/clients/http_client.dart';
 import 'package:basic_authentication_flutter_challenge/src/data/data_sources/local_data_sources/local_users_data_source.dart';
 import 'package:basic_authentication_flutter_challenge/src/data/data_sources/remote_data_sources/remote_users_data_source.dart';
-import 'package:basic_authentication_flutter_challenge/src/data/helper_classes/http_client.dart';
 import 'package:basic_authentication_flutter_challenge/src/data/repositories/users_repository_impl.dart';
 import 'package:basic_authentication_flutter_challenge/src/domain/repositories/users_repository.dart';
-import 'package:basic_authentication_flutter_challenge/src/domain/storage/local_storage.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/clients/local_storage_client.dart';
 import 'package:basic_authentication_flutter_challenge/src/services/auth_service.dart';
 import 'package:basic_authentication_flutter_challenge/src/services/current_auth_user.dart';
 import 'package:basic_authentication_flutter_challenge/src/services/app_router.dart';
-import 'package:basic_authentication_flutter_challenge/src/services/hive_storage.dart';
+import 'package:basic_authentication_flutter_challenge/src/data/clients/hive_client.dart';
 import 'package:basic_authentication_flutter_challenge/src/services/notifier.dart';
 import 'package:basic_authentication_flutter_challenge/src/services/tokens_service.dart';
 import 'package:get_it/get_it.dart';
@@ -36,6 +36,7 @@ Future<void> injecDependencies() async {
   );
   const tokens = TokensService(storage: storage);
   final authService = AuthService(
+    httpClient: httpClient,
     tokens: tokens,
     authUser: authUser,
   );
@@ -44,7 +45,7 @@ Future<void> injecDependencies() async {
   // Register the dependencies
   locator.registerSingleton<AppRouter>(router);
   locator.registerSingleton<Notifier>(notifier);
-  locator.registerSingleton<LocalStorage>(storage);
+  locator.registerSingleton<LocalStorageClient>(storage);
   locator.registerSingleton<TokensService>(tokens);
   locator.registerSingleton<HttpClient>(httpClient);
   locator.registerSingleton<AuthService>(authService);
