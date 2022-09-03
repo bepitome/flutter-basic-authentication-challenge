@@ -5,7 +5,6 @@ import '../models/profile.dart';
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:basic_authentication_flutter_challenge/models/http_exception.dart';
 import 'package:http/http.dart' as http;
 
 class Profiles with ChangeNotifier {
@@ -36,11 +35,9 @@ class Profiles with ChangeNotifier {
       final responseData = jsonDecode(response.body) as Map<String, dynamic>;
       if (response.statusCode != 200) {
         // throw HttpException(responseData['result']);
-        print(responseData['result'] + 'issue');
         return;
       }
       final profileData = responseData['result'] as dynamic;
-      print(profileData);
       mainProfile = Profile(
         id: profileData['id'],
         firstName: profileData['first_name'],
@@ -52,7 +49,6 @@ class Profiles with ChangeNotifier {
       );
       notifyListeners();
     } catch (error) {
-      print('Main Profile Fetch Error');
       rethrow;
     }
   }
@@ -69,7 +65,6 @@ class Profiles with ChangeNotifier {
       final responseData = jsonDecode(response.body) as Map<String, dynamic>;
       if (response.statusCode != 200) {
         // throw HttpException(responseData['result']);
-        print(responseData['result']);
         return;
       }
       final extractedData = responseData['result'] as List<dynamic>;
@@ -94,7 +89,6 @@ class Profiles with ChangeNotifier {
       _profiles = loadedProfiles;
       notifyListeners();
     } catch (error) {
-      print('Team Profile fetch Error');
       rethrow;
     }
   }

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
-import 'package:basic_authentication_flutter_challenge/models/http_exception.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 
@@ -49,11 +49,8 @@ class Auth with ChangeNotifier {
       }
       _token = responseData['result']['accessToken'];
       _userId = responseData['result']['id'];
-      print(_token);
-      print(_userId);
       notifyListeners();
     } catch (error) {
-      print('Login Error');
       rethrow;
     }
   }
