@@ -1,4 +1,5 @@
 import 'package:basic_authentication_flutter_challenge/injection.dart';
+import 'package:basic_authentication_flutter_challenge/src/data/exceptions/http_exception.dart';
 import 'package:basic_authentication_flutter_challenge/src/domain/entities/user.dart';
 import 'package:basic_authentication_flutter_challenge/src/domain/repositories/users_repository.dart';
 import 'package:basic_authentication_flutter_challenge/src/presentation/views/teammates/teammates_view.dart';
@@ -22,6 +23,8 @@ class HomeViewModel extends BaseViewModel {
     try {
       final currentUserId = await locator<CurrenAuthtUser>().getLocalUserId();
       currentUser = await usersRepo.getUser(currentUserId);
+    } on HttpException catch (e) {
+      locator<Notifier>().show(e.message);
     } catch (e) {
       locator<Notifier>().show('Couldn\'t get your details: ${e.toString()}');
     }

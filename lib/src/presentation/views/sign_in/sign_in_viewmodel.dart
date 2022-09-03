@@ -1,4 +1,5 @@
 import 'package:basic_authentication_flutter_challenge/injection.dart';
+import 'package:basic_authentication_flutter_challenge/src/data/exceptions/http_exception.dart';
 import 'package:basic_authentication_flutter_challenge/src/services/notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -18,6 +19,8 @@ class SignInViewModel extends BaseViewModel {
           usernameController.text,
           passwordController.text,
         );
+      } on HttpException catch (e) {
+        locator<Notifier>().show(e.message);
       } catch (e) {
         locator<Notifier>().show('Couldn\'t authenticate: ${e.toString()}');
       }

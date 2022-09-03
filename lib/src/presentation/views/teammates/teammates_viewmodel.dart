@@ -1,4 +1,5 @@
 import 'package:basic_authentication_flutter_challenge/injection.dart';
+import 'package:basic_authentication_flutter_challenge/src/data/exceptions/http_exception.dart';
 import 'package:basic_authentication_flutter_challenge/src/domain/entities/user.dart';
 import 'package:basic_authentication_flutter_challenge/src/domain/repositories/users_repository.dart';
 import 'package:basic_authentication_flutter_challenge/src/services/current_auth_user.dart';
@@ -21,6 +22,8 @@ class TeammatesViewModel extends BaseViewModel {
       final currentUserId = await authUser.getLocalUserId();
       final currentUser = await usersRepo.getUser(currentUserId);
       teammates = await usersRepo.getUsersInCompany(currentUser.company);
+    } on HttpException catch (e) {
+      locator<Notifier>().show(e.message);
     } catch (e) {
       locator<Notifier>().show('Couldn\'t load emplyees data: ${e.toString()}');
     }
