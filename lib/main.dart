@@ -1,18 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../screens/auth_screen.dart';
-import 'package:flutter/material.dart';
-import './screens/profile_screen.dart';
 import './providers/auth.dart';
-import './models/profile.dart';
 import './providers/profiles.dart';
+import './screens/profile_screen.dart';
+import '../screens/auth_screen.dart';
 
 void main() {
-  /**
-   *    Welcome to Basic authentication challenge
-   *    Make sure to read CHALLENGE.md before you start
-   *
-   */
   runApp(const MyApp());
 }
 

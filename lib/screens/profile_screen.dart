@@ -1,10 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../models/profile.dart';
 import '../providers/profiles.dart';
-
 import '../widgets/main_profile.dart';
-import 'package:flutter/material.dart';
 import '../widgets/profile_tile.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -46,7 +45,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //final test = Provider.of<Profiles>(context, listen: false).teamProfiles();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
@@ -54,7 +52,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: Column(
         children: [
           MainProfile(profile),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Expanded(
             child: ListView.builder(
               itemCount: profiles.length,

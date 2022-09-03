@@ -1,11 +1,11 @@
-import 'package:flutter/widgets.dart';
-
-import '../models/profile.dart';
-
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
+
+import '../app_config.dart' as config;
+import '../models/profile.dart';
 
 class Profiles with ChangeNotifier {
   List<Profile> _profiles = [];
@@ -24,7 +24,7 @@ class Profiles with ChangeNotifier {
   }
 
   Future<void> loggedinUserProfile() async {
-    final url = Uri.parse('http://161.35.99.225/api/v1/users/$userId');
+    final url = Uri.parse('${config.apiBaseUrl}/users/$userId');
     try {
       final response = await http.get(
         url,
@@ -54,7 +54,7 @@ class Profiles with ChangeNotifier {
   }
 
   Future<void> teamProfiles() async {
-    final url = Uri.parse('http://161.35.99.225/api/v1/users');
+    final url = Uri.parse('${config.apiBaseUrl}/users');
     try {
       final response = await http.get(
         url,

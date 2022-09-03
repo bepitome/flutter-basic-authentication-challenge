@@ -5,6 +5,8 @@ import 'dart:io';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 
+import '../app_config.dart' as config;
+
 class Auth with ChangeNotifier {
   String? _token;
   String? _userName;
@@ -27,18 +29,12 @@ class Auth with ChangeNotifier {
   }
 
   Future<void> login(String? userName, String? password) async {
-    final url = Uri.parse('http://161.35.99.225/api/v1/auth/login');
+    final url = Uri.parse('${config.apiBaseUrl}/auth/login');
     final bytes = utf8.encode('$userName:$password');
     final basicAuthText = base64.encode(bytes);
     try {
       final response = await http.post(
         url,
-        // body: json.encode(
-        //   {
-        //     'userName': userName,
-        //     'password': password,
-        //   },
-        // ),
         headers: {
           'Authorization': 'basic $basicAuthText',
         },
