@@ -16,14 +16,14 @@ class HttpClient implements RemoteAPIClient {
     required String endPoint,
     Map<String, dynamic>? query,
   }) async {
-    final auth = locator<TokensService>();
+    final tokens = locator<TokensService>();
     Uri url = Uri.parse('$kApiBaseUrl$endPoint').replace(
       queryParameters: query,
     );
     final headers = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': await auth.getLocalAccessToken(),
+      'Authorization': await tokens.getLocalAccessToken(),
     };
     final response = await http.get(url, headers: headers);
     final body = jsonDecode(response.body);
@@ -43,14 +43,14 @@ class HttpClient implements RemoteAPIClient {
     required String endPoint,
     Map<String, dynamic>? query,
   }) async {
-    final auth = locator<TokensService>();
+    final tokens = locator<TokensService>();
     Uri url = Uri.parse('$kApiBaseUrl$endPoint').replace(
       queryParameters: query,
     );
     final headers = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': await auth.getLocalAccessToken(),
+      'Authorization': await tokens.getLocalAccessToken(),
     };
     final response = await http.post(url, headers: headers);
     final body = jsonDecode(response.body);
