@@ -14,11 +14,12 @@ class CurrenAuthtUser {
       key: kStorageCurrentUserKey,
       from: LocalStoragePool.authData,
     );
-    if (int.tryParse(id) == null) {
+    final idAsInteger = int.tryParse(id);
+    if (idAsInteger == null) {
       locator<AuthService>().logout();
       throw Exception('Logged out due to an issue, Please sign in again.');
     }
-    return int.parse(id);
+    return idAsInteger;
   }
 
   Future<void> updateUserIdLocally(int id) async {
