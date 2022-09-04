@@ -1,11 +1,9 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
-import 'package:http/http.dart' as http;
 
-import '../app_config.dart' as config;
 import '../models/profile.dart';
+import '../repository/profile_repository.dart' as profile_repos;
 
 class Profiles with ChangeNotifier {
   List<Profile> _profiles = [];
@@ -28,53 +26,20 @@ class Profiles with ChangeNotifier {
   }
 
   Future<void> loggedinUserProfile() async {
-    final url = Uri.parse('${config.apiBaseUrl}/users/$userId');
-    try {
-      final response = await http.get(
-        url,
-        headers: {
-          'Authorization': authToken!,
-        },
-      );
-      final responseData = jsonDecode(response.body) as Map<String, dynamic>;
-      if (response.statusCode != 200) {
-        // throw HttpException(responseData['result']);
-        return;
-      }
-      final profileData = responseData['result'] as dynamic;
-      mainProfile = Profile.fromJson(profileData);
-      notifyListeners();
-    } catch (error) {
-      rethrow;
-    }
+    mainProfile = await profile_repos.fetchAndSetProfile(authToken!, userId!);
+    notifyListeners();
   }
 
   Future<void> teamProfiles() async {
-    final url = Uri.parse('${config.apiBaseUrl}/users');
-    try {
-      final response = await http.get(
-        url,
-        headers: {
-          'Authorization': authToken!,
-        },
-      );
-      final responseData = jsonDecode(response.body) as Map<String, dynamic>;
-      if (response.statusCode != 200) {
-        // throw HttpException(responseData['result']);
-        return;
+    var loadedProfiles = await profile_repos.fetchAndSetProfiles(authToken!);
+    List<Profile> sameCompProfiles = [];
+    for (var profileData in loadedProfiles) {
+      if (mainProfile?.company == profileData.company &&
+          mainProfile?.id != profileData.id) {
+        sameCompProfiles.add(profileData);
       }
-      final extractedData = responseData['result'] as List<dynamic>;
-      final List<Profile> loadedProfiles = [];
-      for (var profileData in extractedData) {
-        if (mainProfile?.company == profileData['company'] &&
-            mainProfile?.id != profileData['id']) {
-          loadedProfiles.add(Profile.fromJson(profileData));
-        }
-      }
-      _profiles = loadedProfiles;
-      notifyListeners();
-    } catch (error) {
-      rethrow;
     }
+    _profiles = sameCompProfiles;
+    notifyListeners();
   }
 }
