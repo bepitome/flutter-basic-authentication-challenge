@@ -42,15 +42,7 @@ class Profiles with ChangeNotifier {
         return;
       }
       final profileData = responseData['result'] as dynamic;
-      mainProfile = Profile(
-        id: profileData['id'],
-        firstName: profileData['first_name'],
-        lastName: profileData['last_name'],
-        email: profileData['email'],
-        username: profileData['username'],
-        company: profileData['company'],
-        gender: profileData['gender'] == 'Male' ? Gender.male : Gender.female,
-      );
+      mainProfile = Profile.fromJson(profileData);
       notifyListeners();
     } catch (error) {
       rethrow;
@@ -76,18 +68,7 @@ class Profiles with ChangeNotifier {
       for (var profileData in extractedData) {
         if (mainProfile?.company == profileData['company'] &&
             mainProfile?.id != profileData['id']) {
-          loadedProfiles.add(
-            Profile(
-              id: profileData['id'],
-              firstName: profileData['first_name'],
-              lastName: profileData['last_name'],
-              email: profileData['email'],
-              username: profileData['username'],
-              company: profileData['company'],
-              gender:
-                  profileData['gender'] == 'Male' ? Gender.male : Gender.female,
-            ),
-          );
+          loadedProfiles.add(Profile.fromJson(profileData));
         }
       }
       _profiles = loadedProfiles;
