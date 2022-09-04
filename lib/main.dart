@@ -21,9 +21,16 @@ class MyApp extends StatelessWidget {
           create: (ctx) => Auth(),
         ),
         ChangeNotifierProxyProvider<Auth, Profiles>(
-          create: (ctx) => Profiles(null, null, [], null),
-          update: (ctx, auth, profiles) => Profiles(auth.token, auth.userId,
-              profiles!.profiles, profiles.mainProfile),
+          create: (ctx) => Profiles(
+            authToken: null,
+            mainProfile: null,
+            userId: null,
+          ),
+          update: (ctx, auth, profiles) => Profiles(
+            authToken: auth.token,
+            userId: auth.userId,
+            mainProfile: profiles?.mainProfile,
+          ),
         )
       ],
       child: Consumer<Auth>(

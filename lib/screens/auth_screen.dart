@@ -53,6 +53,10 @@ class _AuthScreenState extends State<AuthScreen> {
           _authData['userName'] == '' ||
           _authData['password'] == null ||
           _authData['password'] == '') {
+        _showErrorDialog('Please fill all mandatory information');
+        setState(() {
+          _isLoading = false;
+        });
         return;
       }
       await Provider.of<Auth>(context, listen: false).login(

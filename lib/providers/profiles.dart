@@ -13,7 +13,11 @@ class Profiles with ChangeNotifier {
   final int? userId;
   Profile? mainProfile;
 
-  Profiles(this.authToken, this.userId, this._profiles, this.mainProfile);
+  Profiles({
+    required this.authToken,
+    required this.userId,
+    required this.mainProfile,
+  });
 
   List<Profile> get profiles {
     return [..._profiles];
