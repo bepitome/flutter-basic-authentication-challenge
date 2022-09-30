@@ -1,7 +1,10 @@
+import 'package:basic_authentication_flutter_challenge/Screens/loginpage.dart';
+import 'package:basic_authentication_flutter_challenge/Screens/ProfileScreen.dart';
+import 'package:flutter/material.dart';
+
+import 'API/auth.dart';
+
 void main() {
-  /**
-   *    Welcome to Basic authentication challenge
-   *    Make sure to read CHALLENGE.md before you start
-   *
-   */
+  runApp(MaterialApp(home:
+  loginpage()));
 }
