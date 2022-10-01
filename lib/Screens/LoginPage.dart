@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
-import '../API/auth.dart';
+import '../API/Auth.dart';
 import '../../Screens/ProfileScreen.dart';
-import 'allUsers.dart';
 
-class loginpage extends StatefulWidget {
-  loginpage({Key? key}) : super(key: key);
+
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  State<loginpage> createState() => _loginpageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _loginpageState extends State<loginpage> {
-  auth api = auth();
-
-  var res;
-
+class _LoginPageState extends State<LoginPage> {
+  Auth api = Auth();
 final usernameController= TextEditingController();
 
 final passwordController = TextEditingController();
@@ -22,13 +19,14 @@ final passwordController = TextEditingController();
  final response='';
 
 
+  @override
   Widget build(BuildContext context) {
 
     return MaterialApp(
         home: Scaffold(
           backgroundColor: Colors.white70,
-          appBar: AppBar(title: Text("Login Page"),
-          backgroundColor: Color.fromRGBO(170, 126, 189, 100),),
+          appBar: AppBar(title: const Text("Login Page"),
+          backgroundColor: const Color.fromRGBO(170, 126, 189, 100),),
           body: Center(
             child: Stack(
               children:<Widget> [
@@ -48,24 +46,24 @@ final passwordController = TextEditingController();
                 child: Center(
                   child: Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
-                      Image(
+                      const Image(
                           image: AssetImage('images/3898671.png')),
-                      Text(
+                      const Text(
                         "Login",
                         style: TextStyle(
                             color: Color.fromRGBO(170, 126, 189, 100),
                             fontWeight: FontWeight.bold,
                             fontSize: 24),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 45,
                       ),
-                      Padding(padding: EdgeInsets.symmetric(horizontal: 50,vertical: 20),
+                      Padding(padding: const EdgeInsets.symmetric(horizontal: 50,vertical: 20),
                       child:TextField(
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: "Username",
                         hintStyle: TextStyle(color: Colors.grey),
@@ -73,10 +71,10 @@ final passwordController = TextEditingController();
                   controller: usernameController,
                 ),
                 ),
-                  Padding(padding: EdgeInsets.symmetric(horizontal: 50,vertical: 20),
+                  Padding(padding: const EdgeInsets.symmetric(horizontal: 50,vertical: 20),
                       child: TextField(
                   keyboardType: TextInputType.visiblePassword,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                     hintText: "Password",
                     hintStyle: TextStyle(color: Colors.grey),
@@ -84,7 +82,7 @@ final passwordController = TextEditingController();
                   controller: passwordController,
                 ),
                 ),
-                      Padding(padding: EdgeInsets.all(20),
+                      Padding(padding: const EdgeInsets.all(20),
                       child:Row(
                           children: [
                           loginButton(),
@@ -108,23 +106,23 @@ final passwordController = TextEditingController();
 
   Widget loginButton(){
     return ElevatedButton(
-        child: Text("Login"),
         style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-          backgroundColor: Color.fromRGBO(170, 126, 189, 100)
+          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+          backgroundColor: const Color.fromRGBO(170, 126, 189, 100)
         ),
         onPressed :() async {
-      auth.setUsername(usernameController.text);
-      auth.setPassword(passwordController.text);
+      Auth.setUsername(usernameController.text);
+      Auth.setPassword(passwordController.text);
 
       await api.fetchToken();
 
 
         Navigator.pushReplacement(context,
-    MaterialPageRoute(builder:
-    (context) => const wrapper()));
+                    MaterialPageRoute(builder:
+                          (context) => const ProfilePage()));
 
-      }
+      },
+        child: const Text("Login")
 
     );
     }

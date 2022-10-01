@@ -1,21 +1,21 @@
 import 'dart:convert';
-import 'package:basic_authentication_flutter_challenge/Screens/loginpage.dart';
-import 'package:basic_authentication_flutter_challenge/Screens/allUsers.dart';
+import 'package:basic_authentication_flutter_challenge/Screens/LoginPage.dart';
+import 'package:basic_authentication_flutter_challenge/Screens/AllUsers.dart';
 import 'package:flutter/material.dart';
-import 'package:basic_authentication_flutter_challenge/API/auth.dart';
+import 'package:basic_authentication_flutter_challenge/API/Auth.dart';
 
 
 
 
-class wrapper extends StatefulWidget {
-  const wrapper({ Key? key }) : super(key: key);
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({ Key? key }) : super(key: key);
 
   @override
-  State<wrapper> createState() => _wrapperState();
+  State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _wrapperState extends State<wrapper> {
-  auth api = auth();
+class _ProfilePageState extends State<ProfilePage> {
+  Auth api = Auth();
 
   String fname = '';
   String lname = '';
@@ -41,8 +41,7 @@ class _wrapperState extends State<wrapper> {
       });
     }
     catch (ex) {
-      print('Error');
-      print(ex.toString());
+      throw Exception("Error fetching data");
     }
   }
 
@@ -56,43 +55,43 @@ class _wrapperState extends State<wrapper> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Personal Information'),
-        backgroundColor: Color.fromRGBO(170, 126, 189, 100),),
+      appBar: AppBar(title: const Text('Personal Information'),
+        backgroundColor: const Color.fromRGBO(170, 126, 189, 100),),
       body: ListView(
         children: [
           ListTile(
-            leading: Icon(Icons.circle),
-            title: Text("First name: " + fname),
+            leading: const Icon(Icons.circle),
+            title: Text("First name: $fname"),
           ),
           ListTile(
-            leading: Icon(Icons.circle),
-            title: Text("Last name: " + lname),
+            leading: const Icon(Icons.circle),
+            title: Text("Last name: $lname"),
           ),
           ListTile(
-            leading: Icon(Icons.mail),
-            title: Text("Email: " + email),
+            leading: const Icon(Icons.mail),
+            title: Text("Email: $email"),
           ),
           ListTile(
-            leading: Icon(Icons.circle),
-            title: Text("Username: " + username),
+            leading: const Icon(Icons.circle),
+            title: Text("Username: $username"),
           ),
           ListTile(
-            leading: Icon(Icons.person),
-            title: Text("Gender: " + gender),
+            leading: const Icon(Icons.person),
+            title: Text("Gender: $gender"),
           ),
           ListTile(
-            leading: Icon(Icons.work),
-            title: Text("Company: " + company),
+            leading: const Icon(Icons.work),
+            title: Text("Company: $company"),
           ),
           ListTile(
             title: ElevatedButton(
               onPressed: () { Navigator.pushReplacement(context,
                   MaterialPageRoute(builder:
                       (context) => const AllUsers())); },
-              child: Text("Show all Users"),
-              style: ElevatedButton.styleFrom( backgroundColor: Color.fromRGBO(170, 126, 189, 100),
+              style: ElevatedButton.styleFrom( backgroundColor: const Color.fromRGBO(170, 126, 189, 100),
 
               ),
+              child: const Text("Show all Users"),
             ),
           ),
           ListTile(
@@ -108,8 +107,8 @@ class _wrapperState extends State<wrapper> {
         onPressed: (){
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder:
-                  (context) => new loginpage()));
-        }, child: Text("Log out"),
-        style: ElevatedButton.styleFrom( backgroundColor: Color.fromRGBO(170, 126, 189, 100)));
+                  (context) => const LoginPage()));
+        },
+        style: ElevatedButton.styleFrom( backgroundColor: const Color.fromRGBO(170, 126, 189, 100)), child: const Text("Log out"));
   }
 }
