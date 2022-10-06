@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../API/Auth.dart';
-import '../../Screens/ProfileScreen.dart';
+import '../API/auth_user.dart';
+import '../../Screens/profile_screen.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -115,16 +115,26 @@ final passwordController = TextEditingController();
       Auth.setPassword(passwordController.text);
 
       await api.fetchToken();
+      nextPage();
 
-
-        Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder:
-                          (context) => const ProfilePage()));
 
       },
         child: const Text("Login")
 
     );
+    }
+    Widget nextPage(){
+    return ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+            backgroundColor: const Color.fromRGBO(170, 126, 189, 100)
+        ),
+        onPressed: (){
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder:
+              (context) => const ProfilePage()));
+    }, child:
+    const Text('Move To Your Profile Page'));
     }
 
 }

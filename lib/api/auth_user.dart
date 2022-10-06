@@ -50,10 +50,14 @@ class Auth {
     }
   }
 
+
+
   Future<dynamic> fetchToken() async {
+    String accessToken='wrong token';
     final res = await http.post(Uri.parse(baseUrl),
-        headers: <String, String>{'Authorization': basicAuth});
-    var jsonData = jsonDecode(res.body);
+        headers: {HttpHeaders.authorizationHeader: basicAuth});
+    String jsonRespone= res.body.toString();
+    final jsonData = jsonDecode(jsonRespone);
     accessToken = jsonData['result']['accessToken'];
     if (res.statusCode == 200) {
       return accessToken;
@@ -69,4 +73,8 @@ class Auth {
         });
     return res.body.toString();
   }
+
+
+
+
 }
