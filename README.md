@@ -1,4 +1,4 @@
-## Challenge #1 – Basic Authentication?
+## Challenge #1 – Basic Authentication
 
 #### Tasks to complete
 
