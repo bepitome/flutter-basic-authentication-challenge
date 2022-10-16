@@ -1,4 +1,4 @@
-## Challenge #1 – Basic Authentication?
+## Challenge #1 – Basic Authentication
 
 #### Tasks to complete
 
@@ -17,8 +17,8 @@ _To download challenge APIs, [click here](http://161.35.99.225/api/v1/public/pos
 
 #### Project Submission:
 
-For code review - create a pull request and we will do our best to review your code within 72 hours. In case you faced any difficutly with git or github, you are welcome to book support session [book now](https://calendly.com/mutairibassam).
+For code review - create a pull request and we will do our best to review your code within 72 hours. In case you faced any difficulty with git or github, you are welcome to book a support session [book now](https://calendly.com/mutairibassam).
 
-In case you couldn’t be able to complete the project, don’t give up! We are still here to help you. You can also book a support session with field experts to guide you. For flutter related [click here](https://calendly.com/adnsawas) for backend/challenge related [click here](https://calendly.com/mutairibassam).
+In case you couldn’t be able to complete the project, don’t give up! We are still here to help you. You can also book a support session with field experts to guide you. For flutter related [Adnan](https://calendly.com/adnsawas), [Majid](https://calendly.com/majidraimi), or [Ayman](https://calendly.com/aymanz-dev) for challenge related [Bassam](https://calendly.com/mutairibassam).
 
 <p style="color:red">Submissions with missing tasks, or buggy apps will be ignored.</p>
