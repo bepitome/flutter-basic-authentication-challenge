@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:basic_authentication_flutter_challenge/Screens/login_page.dart';
 import 'package:basic_authentication_flutter_challenge/Screens/all_users.dart';
 import 'package:flutter/material.dart';
-import 'package:basic_authentication_flutter_challenge/API/auth_user.dart';
+import 'package:basic_authentication_flutter_challenge/api/auth_user.dart';
 
 
 

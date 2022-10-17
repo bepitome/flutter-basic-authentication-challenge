@@ -2,10 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 
+
 class Auth {
   final baseUrl = 'http://161.35.99.225/api/v1/auth/login';
   String accessToken = '';
-  String id = '';
+  var id;
   static String username = '';
   static String password = '';
   String basicAuth =
@@ -28,41 +29,53 @@ class Auth {
   }
 
   Future<dynamic> userAuth() async {
-    String getId = await fetchId();
-    String token= await fetchToken();
+    var arr=await fetchToken();
+    print(arr);
+
+    Map<String, String> requestHeaders = {
+      'Content-type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': accessToken
+    };
 
     final res = await http.get(
-        Uri.parse('http://161.35.99.225/api/v1/users/$getId'),
-        headers: {HttpHeaders.authorizationHeader: token,});
+        Uri.parse('http://161.35.99.225/api/v1/users/$id'),
+        headers:requestHeaders);
 
-    return res.body.toString();
+
+    print('----------'+res.body);
+
+    return res.body;
   }
 
-  Future fetchId() async {
+  // Future fetchId() async {
+  //   final res = await http.post(Uri.parse(baseUrl),
+  //       headers: <String, String>{'Authorization': basicAuth});
+  //   var jsonData = jsonDecode(res.body);
+  //   print(jsonData);
+  //   if (res.statusCode == 200) {
+  //     id = jsonData['result']['id'];
+  //     return id;
+  //   } else {
+  //     throw Exception('Failed to fetch id');
+  //   }
+  // }
+
+  Future<dynamic> fetchToken() async {
+    String basicAuth =
+        'Basic ${base64.encode(utf8.encode('$username:$password'))}';
     final res = await http.post(Uri.parse(baseUrl),
         headers: <String, String>{'Authorization': basicAuth});
     var jsonData = jsonDecode(res.body);
-    id = jsonData['result']['id'].toString();
     if (res.statusCode == 200) {
-      return id;
+      id = jsonData['result']['id'];
+      accessToken = jsonData['result']['accessToken'];
+      print(accessToken);
+      print(id);
+      return [accessToken,id];
+      // return accessToken;
     } else {
-      throw Exception('Failed to fetch id');
-    }
-  }
-
-
-
-  Future<dynamic> fetchToken() async {
-    String accessToken='wrong token';
-    final res = await http.post(Uri.parse(baseUrl),
-        headers: {HttpHeaders.authorizationHeader: basicAuth});
-    String jsonRespone= res.body.toString();
-    final jsonData = jsonDecode(jsonRespone);
-    accessToken = jsonData['result']['accessToken'];
-    if (res.statusCode == 200) {
-      return accessToken;
-    } else {
-      throw Exception('Failed to fetch access token');
+      print(jsonData);
     }
   }
 
@@ -71,10 +84,6 @@ class Auth {
         headers:{
           HttpHeaders.authorizationHeader: await fetchToken(),
         });
-    return res.body.toString();
+    return res;
   }
-
-
-
-
 }

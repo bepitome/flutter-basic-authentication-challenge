@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../API/auth_user.dart';
+import '../api//auth_user.dart';
 import '../../Screens/profile_screen.dart';
 
 
@@ -111,30 +111,22 @@ final passwordController = TextEditingController();
           backgroundColor: const Color.fromRGBO(170, 126, 189, 100)
         ),
         onPressed :() async {
-      Auth.setUsername(usernameController.text);
-      Auth.setPassword(passwordController.text);
+      Auth.setUsername('jarmatage8');
+      Auth.setPassword('xwNEVYPnI');
 
       await api.fetchToken();
       nextPage();
-
 
       },
         child: const Text("Login")
 
     );
     }
-    Widget nextPage(){
-    return ElevatedButton(
-        style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-            backgroundColor: const Color.fromRGBO(170, 126, 189, 100)
-        ),
-        onPressed: (){
+    void nextPage(){
       Navigator.pushReplacement(context,
           MaterialPageRoute(builder:
-              (context) => const ProfilePage()));
-    }, child:
-    const Text('Move To Your Profile Page'));
-    }
+              (context) => const ProfilePage()));}
+
+
 
 }

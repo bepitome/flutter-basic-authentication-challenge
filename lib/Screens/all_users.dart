@@ -1,7 +1,7 @@
 import 'dart:convert';
 import '../../Screens/profile_screen.dart';
 import 'package:flutter/material.dart';
-import '../API/auth_user.dart';
+import '../api/auth_user.dart';
 
 class AllUsers extends StatefulWidget {
   const AllUsers({Key? key}) : super(key: key);
