@@ -2,21 +2,21 @@ import 'dart:convert';
 import 'package:basic_authentication_flutter_challenge/Screens/login_page.dart';
 import 'package:basic_authentication_flutter_challenge/Screens/all_users.dart';
 import 'package:flutter/material.dart';
-import 'package:basic_authentication_flutter_challenge/api/auth_user.dart';
 
 
 
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({ Key? key }) : super(key: key);
+ 
+  const ProfilePage({ Key? key}) : super(key: key);
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  Auth api = Auth();
 
+LoginPage user= LoginPage();
   String fname = '';
   String lname = '';
   String email = '';
@@ -26,9 +26,8 @@ class _ProfilePageState extends State<ProfilePage> {
 
 
 
-  void getInfo() async {
-    final jsonInfo = jsonDecode(await api.userAuth());
-
+    void getInfo() async {
+      final jsonInfo=jsonDecode(await user.api.userAuth());
 
     try {
       setState(() {
@@ -107,7 +106,7 @@ class _ProfilePageState extends State<ProfilePage> {
         onPressed: (){
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder:
-                  (context) => const LoginPage()));
+                  (context) =>  LoginPage()));
         },
         style: ElevatedButton.styleFrom( backgroundColor: const Color.fromRGBO(170, 126, 189, 100)), child: const Text("Log out"));
   }

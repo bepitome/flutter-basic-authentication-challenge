@@ -1,22 +1,22 @@
+
 import 'package:flutter/material.dart';
 import '../api//auth_user.dart';
 import '../../Screens/profile_screen.dart';
 
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  final Auth api=Auth();
+  LoginPage({Key? key}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  Auth api = Auth();
+
+
 final usernameController= TextEditingController();
-
 final passwordController = TextEditingController();
-
- final response='';
 
 
   @override
@@ -111,10 +111,11 @@ final passwordController = TextEditingController();
           backgroundColor: const Color.fromRGBO(170, 126, 189, 100)
         ),
         onPressed :() async {
-      Auth.setUsername('jarmatage8');
-      Auth.setPassword('xwNEVYPnI');
+      Auth.setUsername(usernameController.text);
+      Auth.setPassword(passwordController.text);
 
-      await api.fetchToken();
+      await widget.api.fetchToken();
+      await widget.api.fetchId();
       nextPage();
 
       },
@@ -122,10 +123,10 @@ final passwordController = TextEditingController();
 
     );
     }
-    void nextPage(){
+    Future nextPage() async {
       Navigator.pushReplacement(context,
           MaterialPageRoute(builder:
-              (context) => const ProfilePage()));}
+              (context) =>  const ProfilePage()));}
 
 
 

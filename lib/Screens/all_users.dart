@@ -1,7 +1,8 @@
 import 'dart:convert';
+import 'package:basic_authentication_flutter_challenge/Screens/login_page.dart';
 import '../../Screens/profile_screen.dart';
 import 'package:flutter/material.dart';
-import '../api/auth_user.dart';
+
 
 class AllUsers extends StatefulWidget {
   const AllUsers({Key? key}) : super(key: key);
@@ -12,12 +13,12 @@ class AllUsers extends StatefulWidget {
 
 class _AllUsersState extends State<AllUsers> {
 
-  Auth api = Auth();
+  LoginPage user= LoginPage();
 
   List<ListTile> userTiles=[];
    Future<void> getUsers() async {
      try{
-       var response = jsonDecode(await api.fetchUsers());
+       var response = jsonDecode(await user.api.fetchUsers());
        response=response['result'] as List;
 
        setState(() {
