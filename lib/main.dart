@@ -1,9 +1,8 @@
+import 'package:basic_authentication_flutter_challenge/screens/LoginScreen.dart';
 import 'package:flutter/material.dart';
 
-import './screens/SignInScreen.dart';
-
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -17,7 +16,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: SignInScreen(),
+      debugShowCheckedModeBanner: false,
+      home: LoginScreen(),
     );
   }
 }

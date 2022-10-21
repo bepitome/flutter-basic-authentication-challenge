@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:circle_nav_bar/circle_nav_bar.dart';
 
-import 'home/AllUsersScreen.dart';
-import 'home/ChangePasswordScreen.dart';
-import 'home/ProfileScreen.dart';
+import '../constants/colors.dart';
+import 'HomeScreens/AllUsersScreen.dart';
+import 'HomeScreens/ProfileScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,9 +17,11 @@ class _HomeScreenState extends State<HomeScreen> {
   void goToPage(int index) {
     setState(
       () {
-        _controller.animateToPage(index,
-            curve: Curves.easeInOut,
-            duration: const Duration(milliseconds: 300));
+        _controller.animateToPage(
+          index,
+          curve: Curves.easeInOut,
+          duration: const Duration(milliseconds: 300),
+        );
       },
     );
   }
@@ -29,12 +31,12 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       bottomNavigationBar: CircleNavBar(
         activeIcons: const [
-          Icon(Icons.person, color: Color(0xFF6C63FF)),
-          Icon(Icons.home, color: Color(0xFF6C63FF)),
+          Icon(Icons.person, color: kMainColor),
+          Icon(Icons.home, color: kMainColor),
         ],
-        inactiveIcons: [
-          Icon(Icons.person, color: Colors.indigoAccent[100]),
-          Icon(Icons.home, color: Colors.indigoAccent[100]),
+        inactiveIcons: const [
+          Icon(Icons.person, color: kUnfilledColor),
+          Icon(Icons.home, color: kUnfilledColor),
         ],
         color: Colors.white,
         height: 60,
