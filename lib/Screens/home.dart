@@ -16,19 +16,14 @@ class homePageScreen extends StatefulWidget {
 class _homePageScreenState extends State<homePageScreen> {
   bool isLoading = true;
   Person person = new Person();
+
   void getData() async {
-    var response = jsonDecode(await Authentication.getAllUsers());
-    response = response['result'] as List;
+    var data = await Authentication.getUser();
+
     setState(() {
-      for (var i in response) {
-        Person pp = new Person();
-        pp.result = Result.fromJson(i);
-        if (pp.result?.username == Authentication.username) {
-          person = pp;
-        }
-      }
+      person.result = Result.fromJson(jsonDecode(data)['result']);
+      isLoading = false;
     });
-    isLoading = false;
   }
 
   @override

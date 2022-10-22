@@ -31,19 +31,18 @@ class Authentication {
     }
   }
 
-  static Future<String> getUser() async {
+  static Future<dynamic> getUser() async {
     String userId = await getUserId();
-
     try {
-      var url = Uri.parse('http://161.35.99.225/api/v1/users/:$userId');
+      var url = Uri.parse('http://161.35.99.225/api/v1/users/$userId');
       var response = await http.get(
         url,
         headers: {
-          HttpHeaders.authorizationHeader: await getAccessToken(),
+          HttpHeaders.authorizationHeader: '$accessToken',
         },
       );
 
-      return response.body;
+      return response.body.toString();
     } catch (e) {
       return e.toString();
     }

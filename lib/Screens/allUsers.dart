@@ -19,15 +19,10 @@ class _allUsersState extends State<allUsers> {
   void getData() async {
     var response = jsonDecode(await Authentication.getAllUsers());
     response = response['result'] as List;
+    var dd = await Authentication.getUser();
+    ourGuy.result = Result.fromJson(jsonDecode(dd)['result']);
 
     setState(() {
-      for (var i in response) {
-        Person pp = new Person();
-        pp.result = Result.fromJson(i);
-        if (pp.result?.username == Authentication.username) {
-          ourGuy = pp;
-        }
-      }
       for (var i in response) {
         Person pp = new Person();
         pp.result = Result.fromJson(i);
