@@ -36,6 +36,7 @@ class _HomePage extends State<HomePage> {
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.red,
         onTap: (int index) {
+          // Change state based on index
           setState(() {
             _selectedIndex = index;
           });

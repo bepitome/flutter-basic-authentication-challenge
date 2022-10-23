@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:app/API/user.dart';
+import 'package:app/model/user.dart';
 import 'package:http/http.dart' as http;
 
 class Auth {

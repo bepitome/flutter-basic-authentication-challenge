@@ -1,6 +1,6 @@
 import 'package:app/API/auth.dart';
 import 'package:flutter/material.dart';
-import '../API/user.dart';
+import '../model/user.dart';
 
 class TeamPage extends StatefulWidget {
   const TeamPage({super.key});
@@ -37,12 +37,11 @@ class _TeamPage extends State<TeamPage> {
               child: ListView.builder(
                 itemCount: allUsers.length,
                 itemBuilder: (BuildContext context, int index) {
+                  var user = allUsers[index];
                   return ListTile(
-                    title: Text(
-                        "${allUsers[index].firstName} ${allUsers[index].lastName}"),
-                    subtitle: Text(
-                        "${allUsers[index].email}\n${allUsers[index].gender}"),
-                    trailing: Text("${allUsers[index].company}"),
+                    title: Text("${user.firstName} ${user.lastName}"),
+                    subtitle: Text("${user.email}\n${user.gender}"),
+                    trailing: Text("${user.company}"),
                   );
                 },
               ),

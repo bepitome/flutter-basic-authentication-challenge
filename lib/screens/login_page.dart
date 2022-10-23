@@ -23,11 +23,21 @@ void initState() {
 
 // Create login Page with username and password
 class _LoginPage extends State<LoginPage> {
+  // Go to next page
   void toNextPage() {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => const HomePage()),
     );
+  }
+
+  // Show error messages and user feedback
+  void showsnackbar(BuildContext context, String text) {
+    final snackBar = SnackBar(
+      content: Text(text),
+      duration: const Duration(seconds: 1, milliseconds: 500),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   @override
@@ -81,10 +91,16 @@ class _LoginPage extends State<LoginPage> {
                   // get username and password from TextFormFields
                   String username = usernameForm.text;
                   String password = passwordForm.text;
+
                   if (username.isNotEmpty || password.isNotEmpty) {
+                    // Tell user that request has been made
+                    Future.delayed(Duration.zero)
+                        .then((value) => showsnackbar(context, "Logging in"));
+
                     // convert username and password to base64 using username:password
                     String basicAuth =
                         'Basic ${base64Encode(utf8.encode('$username:$password'))}';
+
                     // wait for API request as boolean value
                     bool login = await Auth.login(basicAuth);
 
@@ -100,6 +116,7 @@ class _LoginPage extends State<LoginPage> {
                           (value) => showsnackbar(context, "Login Failed"));
                     }
                   } else {
+                    // If fields are empty, show error message asynchronously
                     Future.delayed(Duration.zero).then((value) =>
                         showsnackbar(context, "Username or password is empty"));
                   }
@@ -111,13 +128,5 @@ class _LoginPage extends State<LoginPage> {
         ),
       ),
     );
-  }
-
-  void showsnackbar(BuildContext context, String text) {
-    final snackBar = SnackBar(
-      content: Text(text),
-      duration: const Duration(seconds: 5),
-    );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }

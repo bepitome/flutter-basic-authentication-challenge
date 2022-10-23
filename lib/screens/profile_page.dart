@@ -1,5 +1,5 @@
 import 'package:app/API/auth.dart';
-import 'package:app/API/user.dart';
+import 'package:app/model/user.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
