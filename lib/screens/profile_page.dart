@@ -10,15 +10,18 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePage extends State<ProfilePage> {
+  // Get stored user from Auth class
   User user = Auth.user;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Profile app Bar
       appBar: AppBar(
         title: const Text("Profile"),
         centerTitle: true,
       ),
+      // Show user information
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

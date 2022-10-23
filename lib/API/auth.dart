@@ -8,6 +8,7 @@ class Auth {
   static User user = User();
   static List<User> allUsers = [];
 
+  // Function to login
   static Future<bool> login(var basicAuth) async {
     var url = Uri.parse('http://161.35.99.225/api/v1/auth/login');
     var response = await http
@@ -23,7 +24,8 @@ class Auth {
     }
   }
 
-  static Future getUser() async {
+  // function to store users assuming that the user is logged in
+  static Future storeUser() async {
     var url = Uri.parse('http://161.35.99.225/api/v1/users/$userID');
     var response = await http.get(
       url,
@@ -39,7 +41,8 @@ class Auth {
     }
   }
 
-  static Future getAllUsers() async {
+  // function to store all users assuming that the user is logged in
+  static Future storeAllUsers() async {
     var url = Uri.parse('http://161.35.99.225/api/v1/users');
     var response = await http.get(
       url,

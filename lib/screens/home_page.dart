@@ -10,6 +10,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePage extends State<HomePage> {
+  // List of page screens
   final List<Widget> _widgetOptions = <Widget>[
     const ProfilePage(),
     const TeamPage(),
@@ -18,6 +19,7 @@ class _HomePage extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Set the page based on selected index
       body: _widgetOptions.elementAt(_selectedIndex),
       // bottom Bar that has Profile and Team
       bottomNavigationBar: BottomNavigationBar(

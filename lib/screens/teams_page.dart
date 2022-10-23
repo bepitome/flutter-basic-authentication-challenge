@@ -10,6 +10,7 @@ class TeamPage extends StatefulWidget {
 }
 
 class _TeamPage extends State<TeamPage> {
+  // Get stored Teams from Auth class
   List<User> allUsers = Auth.allUsers;
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class _TeamPage extends State<TeamPage> {
         title: const Text("Team"),
         centerTitle: true,
       ),
-      // Profile Icon at the center of the page
+      // Team Icon at the center of the page
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -31,7 +32,7 @@ class _TeamPage extends State<TeamPage> {
               "Team",
               style: TextStyle(fontSize: 30),
             ),
-            // display firstName, LastName, email of allUsers
+            // Show all user information from a list of users
             Expanded(
               child: ListView.builder(
                 itemCount: allUsers.length,
