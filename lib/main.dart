@@ -14,6 +14,7 @@ class _SignUpScreenState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData(primarySwatch: Colors.teal), home: SignUpScreen());
+        theme: ThemeData(primarySwatch: Colors.teal),
+        home: const SignUpScreen());
   }
 }
