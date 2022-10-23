@@ -1,4 +1,4 @@
-import 'package:basic_authentication_flutter_challenge/Screens/home.dart';
+import 'package:basic_authentication_flutter_challenge/Screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:basic_authentication_flutter_challenge/Services/api.dart';
 
@@ -6,10 +6,10 @@ class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  SignUpScreenState createState() => SignUpScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class SignUpScreenState extends State<SignUpScreen> {
   TextEditingController userNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -20,13 +20,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.dispose();
   }
 
+  void homePage() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const HomePageScreen()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.teal),
       home: Scaffold(
           appBar: AppBar(
-            title: Text('login screen'),
+            title: const Text('login screen'),
           ),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -57,7 +64,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       child: TextFormField(
                         controller: passwordController,
                         keyboardType: TextInputType.visiblePassword,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: "password",
                           hintText: "enter password",
                           prefixIcon: Icon(Icons.password),
@@ -80,19 +87,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 await Authentication.getUserId();
                             Authentication.accessToken =
                                 await Authentication.getAccessToken();
-                            if (Authentication.accessToken.length >= 50)
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const homePageScreen()),
-                              );
-                            else
-                              print("cant log in");
+                            if (Authentication.accessToken.length >= 50) {
+                              homePage();
+                            }
                           },
-                          child: Text('login'),
                           color: Colors.teal,
                           textColor: Colors.white,
+                          child: const Text('login'),
                         ),
                       ),
                     )
@@ -104,5 +105,3 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 }
-//username: jarmatage8
-//password: xwNEVYPnI

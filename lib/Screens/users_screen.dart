@@ -1,30 +1,28 @@
 import 'dart:convert';
-
-import 'package:basic_authentication_flutter_challenge/Screens/home.dart';
-import 'package:basic_authentication_flutter_challenge/Screens/signUpScreen.dart';
 import 'package:basic_authentication_flutter_challenge/Services/api.dart';
+import 'package:basic_authentication_flutter_challenge/Services/person.dart';
 import 'package:flutter/material.dart';
 
-class allUsers extends StatefulWidget {
-  const allUsers({super.key});
+class AllUsers extends StatefulWidget {
+  const AllUsers({super.key});
 
   @override
-  State<allUsers> createState() => _allUsersState();
+  State<AllUsers> createState() => _AllUsersState();
 }
 
-class _allUsersState extends State<allUsers> {
+class _AllUsersState extends State<AllUsers> {
   bool isLoading = true;
   final List<Person> users = [];
-  Person ourGuy = new Person();
+  Person ourGuy = Person();
   void getData() async {
     var response = jsonDecode(await Authentication.getAllUsers());
     response = response['result'] as List;
-    var dd = await Authentication.getUser();
-    ourGuy.result = Result.fromJson(jsonDecode(dd)['result']);
+    var mainUser = await Authentication.getUser();
+    ourGuy.result = Result.fromJson(jsonDecode(mainUser)['result']);
 
     setState(() {
       for (var i in response) {
-        Person pp = new Person();
+        Person pp = Person();
         pp.result = Result.fromJson(i);
         if (pp.result?.company == ourGuy.result?.company &&
             pp.result?.username != ourGuy.result?.username) {
@@ -51,7 +49,7 @@ class _allUsersState extends State<allUsers> {
       ),
       backgroundColor: Colors.white,
       body: isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
               itemCount: users.length,
               itemBuilder: (BuildContext context, int index) {
@@ -60,7 +58,7 @@ class _allUsersState extends State<allUsers> {
                     subtitle: Text("${users[index].result?.email}"),
                     trailing: Text(
                       "${users[index].result?.company}",
-                      style: TextStyle(color: Colors.teal, fontSize: 15),
+                      style: const TextStyle(color: Colors.teal, fontSize: 15),
                     ),
                     title: Text(
                         "${users[index].result?.firstName} ${users[index].result?.lastName}, ${users[index].result?.gender}"));

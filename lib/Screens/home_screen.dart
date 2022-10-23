@@ -1,21 +1,21 @@
 import 'dart:convert';
-
-import 'package:basic_authentication_flutter_challenge/Screens/allUsers.dart';
-import 'package:basic_authentication_flutter_challenge/Screens/signUpScreen.dart';
+import 'package:basic_authentication_flutter_challenge/Screens/users_screen.dart';
+import 'package:basic_authentication_flutter_challenge/Screens/sign_up_screen.dart';
 import 'package:basic_authentication_flutter_challenge/Services/api.dart';
+import 'package:basic_authentication_flutter_challenge/Services/person.dart';
 import 'package:flutter/material.dart';
 import 'package:profile/profile.dart';
 
-class homePageScreen extends StatefulWidget {
-  const homePageScreen({super.key});
+class HomePageScreen extends StatefulWidget {
+  const HomePageScreen({super.key});
 
   @override
-  State<homePageScreen> createState() => _homePageScreenState();
+  State<HomePageScreen> createState() => _HomePageScreen();
 }
 
-class _homePageScreenState extends State<homePageScreen> {
+class _HomePageScreen extends State<HomePageScreen> {
   bool isLoading = true;
-  Person person = new Person();
+  Person person = Person();
 
   void getData() async {
     var data = await Authentication.getUser();
@@ -32,6 +32,7 @@ class _homePageScreenState extends State<homePageScreen> {
     super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -39,7 +40,7 @@ class _homePageScreenState extends State<homePageScreen> {
           elevation: 0,
         ),
         body: isLoading
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : Column(
                 children: [
                   Center(
@@ -61,7 +62,7 @@ class _homePageScreenState extends State<homePageScreen> {
                         width: 100,
                         height: 100,
                         color: Colors.teal,
-                        child: Center(child: Text('login screen'))),
+                        child: const Center(child: Text('login screen'))),
                     onTap: () {
                       Navigator.pushReplacement(
                         context,
@@ -76,84 +77,16 @@ class _homePageScreenState extends State<homePageScreen> {
                         width: 100,
                         height: 100,
                         color: Colors.teal,
-                        child: Center(child: Text('users screen'))),
+                        child: const Center(child: Text('users screen'))),
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const allUsers()),
+                            builder: (context) => const AllUsers()),
                       );
                     },
                   )
                 ],
               ));
-  }
-}
-
-class Person {
-  Result? result;
-
-  Person({this.result});
-
-  Person.fromJson(Map<String, dynamic> json) {
-    result =
-        json['result'] != null ? new Result.fromJson(json['result']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.result != null) {
-      data['result'] = this.result!.toJson();
-    }
-    return data;
-  }
-}
-
-class Result {
-  String? sId;
-  int? id;
-  String? firstName;
-  String? lastName;
-  String? email;
-  String? username;
-  String? company;
-  String? password;
-  String? gender;
-
-  Result(
-      {this.sId,
-      this.id,
-      this.firstName,
-      this.lastName,
-      this.email,
-      this.username,
-      this.company,
-      this.password,
-      this.gender});
-
-  Result.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    id = json['id'];
-    firstName = json['first_name'];
-    lastName = json['last_name'];
-    email = json['email'];
-    username = json['username'];
-    company = json['company'];
-    password = json['password'];
-    gender = json['gender'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['id'] = this.id;
-    data['first_name'] = this.firstName;
-    data['last_name'] = this.lastName;
-    data['email'] = this.email;
-    data['username'] = this.username;
-    data['company'] = this.company;
-    data['password'] = this.password;
-    data['gender'] = this.gender;
-    return data;
   }
 }

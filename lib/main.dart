@@ -1,19 +1,19 @@
-import 'package:basic_authentication_flutter_challenge/Screens/signUpScreen.dart';
+import 'package:basic_authentication_flutter_challenge/Screens/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(myApp());
+void main() => runApp(const MyApp());
 
-class myApp extends StatefulWidget {
-  const myApp({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
-  State<myApp> createState() => _SignUpScreenState();
+  State<MyApp> createState() => _SignUpScreenState();
 }
 
-class _SignUpScreenState extends State<myApp> {
+class _SignUpScreenState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: SignUpScreen(),
     );
   }

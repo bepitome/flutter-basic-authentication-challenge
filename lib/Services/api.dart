@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart';
 
 class Authentication {
   static String username = '';
@@ -38,7 +37,7 @@ class Authentication {
       var response = await http.get(
         url,
         headers: {
-          HttpHeaders.authorizationHeader: '$accessToken',
+          HttpHeaders.authorizationHeader: accessToken,
         },
       );
 
