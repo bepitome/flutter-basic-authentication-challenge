@@ -1,6 +1,5 @@
-import 'dart:convert';
 import 'package:basic_authentication_flutter_challenge/Services/api.dart';
-import 'package:basic_authentication_flutter_challenge/Services/person.dart';
+import 'package:basic_authentication_flutter_challenge/models/person.dart';
 import 'package:flutter/material.dart';
 
 class AllUsers extends StatefulWidget {
@@ -11,34 +10,7 @@ class AllUsers extends StatefulWidget {
 }
 
 class _AllUsersState extends State<AllUsers> {
-  bool isLoading = true;
-  final List<Person> users = [];
-  Person ourGuy = Person();
-  void getData() async {
-    var response = jsonDecode(await Authentication.getAllUsers());
-    response = response['result'] as List;
-    var mainUser = await Authentication.getUser();
-    ourGuy.result = Result.fromJson(jsonDecode(mainUser)['result']);
-
-    setState(() {
-      for (var i in response) {
-        Person pp = Person();
-        pp.result = Result.fromJson(i);
-        if (pp.result?.company == ourGuy.result?.company &&
-            pp.result?.username != ourGuy.result?.username) {
-          users.add(pp);
-        }
-      }
-    });
-    isLoading = false;
-  }
-
-  @override
-  void initState() {
-    getData();
-
-    super.initState();
-  }
+  final List<Person> users = Authentication.teamMates;
 
   @override
   Widget build(BuildContext context) {
@@ -48,21 +20,20 @@ class _AllUsersState extends State<AllUsers> {
         backgroundColor: Colors.teal,
       ),
       backgroundColor: Colors.white,
-      body: isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : ListView.builder(
-              itemCount: users.length,
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                    leading: const Icon(Icons.person),
-                    subtitle: Text("${users[index].result?.email}"),
-                    trailing: Text(
-                      "${users[index].result?.company}",
-                      style: const TextStyle(color: Colors.teal, fontSize: 15),
-                    ),
-                    title: Text(
-                        "${users[index].result?.firstName} ${users[index].result?.lastName}, ${users[index].result?.gender}"));
-              }),
+      body: ListView.builder(
+          itemCount: users.length,
+          itemBuilder: (BuildContext context, int index) {
+            Person currentUser = users[index];
+            return ListTile(
+                leading: const Icon(Icons.person),
+                subtitle: Text("${currentUser.email}"),
+                trailing: Text(
+                  "${currentUser.company}",
+                  style: const TextStyle(color: Colors.teal, fontSize: 15),
+                ),
+                title: Text(
+                    "${currentUser.firstName} ${currentUser.lastName}, ${currentUser.gender}"));
+          }),
     );
   }
 }

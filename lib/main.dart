@@ -13,8 +13,7 @@ class MyApp extends StatefulWidget {
 class _SignUpScreenState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: SignUpScreen(),
-    );
+    return MaterialApp(
+        theme: ThemeData(primarySwatch: Colors.teal), home: SignUpScreen());
   }
 }
