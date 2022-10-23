@@ -91,8 +91,8 @@ class _LoginPage extends State<LoginPage> {
                     // if login is true, navigate to home page
                     if (login) {
                       // Navigate to home page
-                      Auth.storeUser();
-                      Auth.storeAllUsers();
+                      await Auth.storeUser();
+                      await Auth.storeAllUsers();
                       toNextPage();
                     } else {
                       // if login is false, show error message asynchronously
