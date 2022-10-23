@@ -1,24 +1,16 @@
-## Challenge #1 – Basic Authentication
+# app
 
-#### Tasks to complete
+A new Flutter project.
 
-- Fork [this repository](https://github.com/bepitome/flutter-basic-authentication-challenge) and create a new branch with prefix of your github username and challenge name. For example if my github account is `mutairibassam` thus my branch should be like `mutairibassam/basic-authentication`.
-- Authenticate successfully with the below account using [Basic authentication](https://en.wikipedia.org/wiki/Basic_access_authentication).
-  - username: jarmatage8
-  - password: xwNEVYPnI
-- Display user profile (first name, last name, email, username, company, gender).
-- Add teammate list (display all employees who are working at the same company as a list).
+## Getting Started
 
-_To download challenge APIs, [click here](http://161.35.99.225/api/v1/public/postman)_
+This project is a starting point for a Flutter application.
 
-<u>Note: We don’t expect something perfect. Just submit what you can do to evaluate your current skills and take you to the next step.</u>
+A few resources to get you started if this is your first Flutter project:
 
----
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-#### Project Submission:
-
-For code review - create a pull request and we will do our best to review your code within 72 hours. In case you faced any difficulty with git or github, you are welcome to book a support session [book now](https://calendly.com/mutairibassam).
-
-In case you couldn’t be able to complete the project, don’t give up! We are still here to help you. You can also book a support session with field experts to guide you. For flutter related [Adnan](https://calendly.com/adnsawas), [Majid](https://calendly.com/majidraimi), or [Ayman](https://calendly.com/aymanz-dev) for challenge related [Bassam](https://calendly.com/mutairibassam).
-
-<p style="color:red">Submissions with missing tasks, or buggy apps will be ignored.</p>
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
