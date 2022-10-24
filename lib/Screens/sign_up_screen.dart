@@ -87,7 +87,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                         onPressed: () async {
                           String username = userNameController.text.toString();
                           String password = passwordController.text.toString();
-                          if (username.isNotEmpty || password.isNotEmpty) {
+                          if (username.isNotEmpty && password.isNotEmpty) {
                             Future.delayed(Duration.zero).then((value) =>
                                 showSnackBar(context, "logging in...."));
                             bool checkLogin =
@@ -96,6 +96,10 @@ class SignUpScreenState extends State<SignUpScreen> {
                               await Authentication.getUser();
                               await Authentication.getAllUsers();
                               homePage();
+                            } else {
+                              Future.delayed(Duration.zero).then((value) =>
+                                  showSnackBar(
+                                      context, "Wrong username or password"));
                             }
                           } else {
                             Future.delayed(Duration.zero).then((value) =>

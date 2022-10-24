@@ -3,14 +3,9 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-  @override
-  State<MyApp> createState() => _SignUpScreenState();
-}
-
-class _SignUpScreenState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
