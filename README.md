@@ -9,7 +9,7 @@
 - Display user profile (first name, last name, email, username, company, gender).
 - Add teammate list (display all employees who are working at the same company as a list).
 
-_To download challenge APIs, [click here](http://161.35.99.225/api/v1/public/postman)_
+_To download challenge APIs, [click here](https://documenter.getpostman.com/view/20449209/2s8YCYnvWQ)_
 
 <u>Note: We don’t expect something perfect. Just submit what you can do to evaluate your current skills and take you to the next step.</u>
 
