@@ -6,10 +6,10 @@ import 'package:http/http.dart' as http;
 class Authentication {
   static String accessToken = '';
   static String userId = '';
+  static bool loginStatus = false;
   static Person person = Person();
-  static final List<Person> teamMates = [];
 
-  static Future<bool> login(String username, String password) async {
+  static Future login(String username, String password) async {
     String credentials = "$username:$password";
     Codec<String, String> stringToBase64 = utf8.fuse(base64);
     String encoded = stringToBase64.encode(credentials);
@@ -20,17 +20,20 @@ class Authentication {
         HttpHeaders.authorizationHeader: 'Basic $encoded',
       },
     );
-    if (response.statusCode == 200) {
-      var decodedData = json.decode(response.body);
-      userId = decodedData['result']['id'].toString();
-      accessToken = decodedData['result']['accessToken'];
-      return true;
-    } else {
-      return false;
+    try {
+      if (response.statusCode == 200) {
+        var decodedData = json.decode(response.body);
+        userId = decodedData['result']['id'].toString();
+        accessToken = decodedData['result']['accessToken'];
+        loginStatus = true;
+      }
+    } catch (e) {
+      loginStatus = false;
+      throw Exception(e.toString());
     }
   }
 
-  static Future<bool> getUser() async {
+  static Future getUser() async {
     var url = Uri.parse('http://161.35.99.225/api/v1/users/$userId');
     var response = await http.get(
       url,
@@ -38,37 +41,14 @@ class Authentication {
         HttpHeaders.authorizationHeader: accessToken,
       },
     );
-    if (response.statusCode == 200) {
-      var jsonResponse = jsonDecode(response.body);
-      jsonResponse = jsonResponse['result'];
-      person = Person.fromJson(jsonResponse);
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  static Future<bool> getAllUsers() async {
-    var url = Uri.parse('http://161.35.99.225/api/v1/users');
-    var response = await http.get(
-      url,
-      headers: {
-        HttpHeaders.authorizationHeader: accessToken,
-      },
-    );
-    if (response.statusCode == 200) {
-      var jsonResponse = jsonDecode(response.body);
-      jsonResponse = jsonResponse['result'] as List;
-      for (var user in jsonResponse) {
-        if (user['company'] == person.company && user['id'] != person.id) {
-          Person tempUser = Person();
-          tempUser = Person.fromJson(user);
-          teamMates.add(tempUser);
-        }
+    try {
+      if (response.statusCode == 200) {
+        var jsonResponse = jsonDecode(response.body);
+        jsonResponse = jsonResponse['result'];
+        person = Person.fromJson(jsonResponse);
       }
-      return true;
-    } else {
-      return false;
+    } catch (e) {
+      throw Exception(e.toString());
     }
   }
 }

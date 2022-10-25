@@ -35,6 +35,25 @@ class SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
+  void login() async {
+    String username = userNameController.text.toString();
+    String password = passwordController.text.toString();
+    if (username.isNotEmpty && password.isNotEmpty) {
+      showSnackBar(context, "logging in....");
+      await Authentication.login(username, password);
+
+      if (Authentication.loginStatus) {
+        await Authentication.getUser();
+        homePage();
+      } else {
+        // ignore: use_build_context_synchronously
+        showSnackBar(context, "Wrong username or password");
+      }
+    } else {
+      showSnackBar(context, "Username or password is empty");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,75 +66,51 @@ class SignUpScreenState extends State<SignUpScreen> {
           // ignore: prefer_const_literals_to_create_immutables
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 30.0),
-              child: Form(
-                  child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: TextFormField(
-                      controller: userNameController,
-                      keyboardType: TextInputType.name,
-                      decoration: const InputDecoration(
-                        labelText: "username",
-                        hintText: "enter username",
-                        prefixIcon: Icon(Icons.person),
-                        border: OutlineInputBorder(),
+                padding: const EdgeInsets.symmetric(vertical: 30.0),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: TextFormField(
+                        controller: userNameController,
+                        keyboardType: TextInputType.name,
+                        decoration: const InputDecoration(
+                          labelText: "username",
+                          hintText: "enter username",
+                          prefixIcon: Icon(Icons.person),
+                          border: OutlineInputBorder(),
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 30),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: TextFormField(
-                      controller: passwordController,
-                      keyboardType: TextInputType.visiblePassword,
-                      decoration: const InputDecoration(
-                        labelText: "password",
-                        hintText: "enter password",
-                        prefixIcon: Icon(Icons.password),
-                        border: OutlineInputBorder(),
+                    const SizedBox(height: 30),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: TextFormField(
+                        controller: passwordController,
+                        keyboardType: TextInputType.visiblePassword,
+                        decoration: const InputDecoration(
+                          labelText: "password",
+                          hintText: "enter password",
+                          prefixIcon: Icon(Icons.password),
+                          border: OutlineInputBorder(),
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 30),
-                  GestureDetector(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 35),
-                      child: MaterialButton(
-                        minWidth: double.infinity,
-                        onPressed: () async {
-                          String username = userNameController.text.toString();
-                          String password = passwordController.text.toString();
-                          if (username.isNotEmpty && password.isNotEmpty) {
-                            Future.delayed(Duration.zero).then((value) =>
-                                showSnackBar(context, "logging in...."));
-                            bool checkLogin =
-                                await Authentication.login(username, password);
-                            if (checkLogin) {
-                              await Authentication.getUser();
-                              await Authentication.getAllUsers();
-                              homePage();
-                            } else {
-                              Future.delayed(Duration.zero).then((value) =>
-                                  showSnackBar(
-                                      context, "Wrong username or password"));
-                            }
-                          } else {
-                            Future.delayed(Duration.zero).then((value) =>
-                                showSnackBar(
-                                    context, "Username or password is empty"));
-                          }
-                        },
-                        color: Colors.teal,
-                        textColor: Colors.white,
-                        child: const Text('login'),
+                    const SizedBox(height: 30),
+                    GestureDetector(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 35),
+                        child: MaterialButton(
+                          minWidth: double.infinity,
+                          onPressed: login,
+                          color: Colors.teal,
+                          textColor: Colors.white,
+                          child: const Text('login'),
+                        ),
                       ),
-                    ),
-                  )
-                ],
-              )),
-            ),
+                    )
+                  ],
+                )),
           ],
         ));
   }
