@@ -22,8 +22,8 @@ final locator = GetIt.instance;
 ///
 Future<void> injecDependencies() async {
   // Initialize the dependencies
-  await HiveStorage.init();
-  const storage = HiveStorage();
+  await HiveStorageClient.init();
+  const storage = HiveStorageClient();
   const router = AppRouter();
   const notifier = Notifier();
   const httpClient = HttpClient();

@@ -1,18 +1,18 @@
 import 'package:basic_authentication_flutter_challenge/injection.dart';
 import 'package:basic_authentication_flutter_challenge/src/data/constants/local_storage_constants.dart';
 import 'package:basic_authentication_flutter_challenge/src/domain/clients/local_storage_client.dart';
-import 'package:basic_authentication_flutter_challenge/src/domain/clients/local_storage_pool.dart';
 import 'package:basic_authentication_flutter_challenge/src/services/auth_service.dart';
 
 class CurrenAuthtUser {
   final LocalStorageClient storage;
+  final ditenation = 'authData';
 
   const CurrenAuthtUser({required this.storage});
 
   Future<int> getLocalUserId() async {
     final id = await storage.read(
       key: kStorageCurrentUserKey,
-      from: LocalStoragePool.authData,
+      from: ditenation,
     );
     final idAsInteger = int.tryParse(id);
     if (idAsInteger == null) {
@@ -26,7 +26,7 @@ class CurrenAuthtUser {
     await storage.write(
       key: kStorageCurrentUserKey,
       value: id.toString(),
-      to: LocalStoragePool.authData,
+      to: ditenation,
     );
   }
 }
