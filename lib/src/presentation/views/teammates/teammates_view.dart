@@ -1,4 +1,3 @@
-import 'package:basic_authentication_flutter_challenge/src/domain/view/view.dart';
 import 'package:basic_authentication_flutter_challenge/src/presentation/global_widgets/loading_indicator.dart';
 import 'package:basic_authentication_flutter_challenge/src/presentation/global_widgets/small_space.dart';
 import 'package:basic_authentication_flutter_challenge/src/presentation/global_widgets/view_scaffold.dart';
@@ -8,7 +7,7 @@ import 'package:basic_authentication_flutter_challenge/src/presentation/views/te
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-class TeammatesView extends View {
+class TeammatesView extends StatelessWidget {
   const TeammatesView({super.key});
 
   @override

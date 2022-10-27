@@ -1,5 +1,4 @@
 import 'package:basic_authentication_flutter_challenge/src/data/constants/keys.dart';
-import 'package:basic_authentication_flutter_challenge/src/domain/view/view.dart';
 import 'package:basic_authentication_flutter_challenge/src/presentation/global_widgets/loading_indicator.dart';
 import 'package:basic_authentication_flutter_challenge/src/presentation/views/app/app_viewmodel.dart';
 import 'package:basic_authentication_flutter_challenge/src/presentation/views/home/home_view.dart';
@@ -7,7 +6,7 @@ import 'package:basic_authentication_flutter_challenge/src/presentation/views/si
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-class AppView extends View {
+class AppView extends StatelessWidget {
   const AppView({Key? key}) : super(key: key);
 
   @override

@@ -1,4 +1,3 @@
-import 'package:basic_authentication_flutter_challenge/src/domain/view/view.dart';
 import 'package:basic_authentication_flutter_challenge/src/presentation/global_widgets/large_space.dart';
 import 'package:basic_authentication_flutter_challenge/src/presentation/global_widgets/medium_space.dart';
 import 'package:basic_authentication_flutter_challenge/src/presentation/global_widgets/view_scaffold.dart';
@@ -10,7 +9,7 @@ import 'package:basic_authentication_flutter_challenge/src/presentation/views/si
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-class SignInView extends View {
+class SignInView extends StatelessWidget {
   const SignInView({super.key});
 
   @override
