@@ -1,5 +1,5 @@
 import 'package:basic_authentication_flutter_challenge/src/data/models/user_model.dart';
-import 'package:basic_authentication_flutter_challenge/src/domain/data_sources/local/local_data_source.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/data_sources/local_data_source.dart';
 
 class LocalUsersDataSource extends LocalDataSource {
   final ditenation = 'users';
