@@ -1,22 +1,22 @@
 import 'package:basic_authentication_flutter_challenge/src/data/constants/api_constants.dart';
-import 'package:basic_authentication_flutter_challenge/src/domain/entities/user.dart';
+import 'package:basic_authentication_flutter_challenge/src/domain/data/model.dart';
 
-class UserModel extends User {
-  final int? id;
+class User extends Model {
+  final String firstName, lastName, email, username, company, gender;
 
-  const UserModel({
-    this.id,
-    required super.firstName,
-    required super.lastName,
-    required super.email,
-    required super.username,
-    required super.company,
-    required super.gender,
+  const User({
+    super.id,
+    required this.firstName,
+    required this.lastName,
+    required this.email,
+    required this.username,
+    required this.company,
+    required this.gender,
   });
 
-  factory UserModel.fromMap(Map<String, dynamic> map) {
-    return UserModel(
-      id: map[kApiUserIdKey] as int?,
+  factory User.fromMap(Map<String, dynamic> map) {
+    return User(
+      id: (map[kApiUserIdKey] as int?).toString(),
       firstName: map[kApiUserFirstNameKey] as String? ?? 'Not set',
       lastName: map[kApiUserLastNameKey] as String? ?? 'Not set',
       email: map[kApiUserEmailKey] as String? ?? 'Not set',
@@ -36,5 +36,10 @@ class UserModel extends User {
       kApiUserCompanyKey: company,
       kApiUserGenderKey: gender,
     };
+  }
+
+  @override
+  String toString() {
+    return '{$firstName, $lastName, $email, $username, $company, $gender}';
   }
 }

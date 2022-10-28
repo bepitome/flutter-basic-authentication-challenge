@@ -1,17 +1,16 @@
-import 'package:basic_authentication_flutter_challenge/src/domain/clients/local_storage_client.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:hive/hive.dart';
 
-/// A helper class for wrapping the 3rd-party package
+/// A helper class for wrapping the 3rd-party Hive package
 
-class HiveStorageClient implements LocalStorageClient {
-  const HiveStorageClient();
+class HiveStorageClient {
+  static const instance = HiveStorageClient._();
+  const HiveStorageClient._();
 
   static Future init() async {
     Hive.init((await getApplicationDocumentsDirectory()).path);
   }
 
-  @override
   Future<dynamic> read({
     required String key,
     required String from,
@@ -20,13 +19,11 @@ class HiveStorageClient implements LocalStorageClient {
     return box.get(key);
   }
 
-  @override
   Future<List<dynamic>> readAll({required String from}) async {
     final box = await Hive.openBox(from);
     return box.values.toList();
   }
 
-  @override
   Future<bool> valueExists({
     required String key,
     required String from,
@@ -35,7 +32,6 @@ class HiveStorageClient implements LocalStorageClient {
     return box.keys.contains(key);
   }
 
-  @override
   Future<void> write({
     required String key,
     required dynamic value,
@@ -45,7 +41,6 @@ class HiveStorageClient implements LocalStorageClient {
     return box.put(key, value);
   }
 
-  @override
   Future<void> writeAll({
     required Map<dynamic, dynamic> entries,
     required String to,
@@ -54,7 +49,6 @@ class HiveStorageClient implements LocalStorageClient {
     return box.putAll(entries);
   }
 
-  @override
   Future<void> delete({
     required String key,
     required String from,

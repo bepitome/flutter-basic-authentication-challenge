@@ -6,12 +6,11 @@ import 'package:basic_authentication_flutter_challenge/src/services/tokens_servi
 import 'package:flutter/foundation.dart';
 
 class AuthService extends ChangeNotifier {
-  final HttpClient httpClient;
+  final httpClient = HttpClient.instance;
   final TokensService tokens;
   final CurrenAuthtUser authUser;
 
   AuthService({
-    required this.httpClient,
     required this.tokens,
     required this.authUser,
   });

@@ -1,9 +1,9 @@
-import 'package:basic_authentication_flutter_challenge/src/data/constants/keys.dart';
 import 'package:flutter/material.dart';
 
 /// A service for showing snackbars messages to the user
 
 class Notifier {
+  static final kMessengerKey = GlobalKey<ScaffoldMessengerState>();
   const Notifier();
 
   void show(String message) {

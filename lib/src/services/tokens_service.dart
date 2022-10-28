@@ -1,16 +1,16 @@
+import 'package:basic_authentication_flutter_challenge/src/data/clients/hive_client.dart';
 import 'package:basic_authentication_flutter_challenge/src/data/constants/local_storage_constants.dart';
-import 'package:basic_authentication_flutter_challenge/src/domain/clients/local_storage_client.dart';
 
 class TokensService {
-  final LocalStorageClient storage;
-  final ditenation = 'authData';
+  final storage = HiveStorageClient.instance;
+  final distenation = 'authData';
 
-  const TokensService({required this.storage});
+  const TokensService();
 
   Future<String> getLocalAccessToken() async {
     final value = await storage.read(
       key: kStorageTokenKey,
-      from: ditenation,
+      from: distenation,
     ) as String?;
     return value ?? '';
   }
@@ -19,14 +19,14 @@ class TokensService {
     await storage.write(
       key: kStorageTokenKey,
       value: token,
-      to: ditenation,
+      to: distenation,
     );
   }
 
   Future<void> deleteAccessTokenLocally() async {
     await storage.delete(
       key: kStorageTokenKey,
-      from: ditenation,
+      from: distenation,
     );
   }
 }

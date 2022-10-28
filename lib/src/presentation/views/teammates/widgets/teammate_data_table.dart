@@ -1,4 +1,4 @@
-import 'package:basic_authentication_flutter_challenge/src/domain/entities/user.dart';
+import 'package:basic_authentication_flutter_challenge/src/data/models/user.dart';
 import 'package:basic_authentication_flutter_challenge/src/presentation/views/teammates/teammates_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';

@@ -2,16 +2,15 @@ import 'dart:convert';
 import 'package:basic_authentication_flutter_challenge/injection.dart';
 import 'package:basic_authentication_flutter_challenge/src/data/constants/api_constants.dart';
 import 'package:basic_authentication_flutter_challenge/src/data/exceptions/http_exception.dart';
-import 'package:basic_authentication_flutter_challenge/src/domain/clients/remote_api_client.dart';
 import 'package:basic_authentication_flutter_challenge/src/services/tokens_service.dart';
 import 'package:http/http.dart' as http;
 
 /// A helper class for wrapping the 3rd-party http package
 
-class HttpClient implements RemoteAPIClient {
-  const HttpClient();
+class HttpClient {
+  static const instance = HttpClient._();
+  const HttpClient._();
 
-  @override
   Future<dynamic> get({
     required String endPoint,
     Map<String, dynamic>? query,
@@ -38,7 +37,6 @@ class HttpClient implements RemoteAPIClient {
     }
   }
 
-  @override
   Future<dynamic> post({
     required String endPoint,
     Map<String, dynamic>? query,

@@ -1,7 +1,7 @@
-import 'package:basic_authentication_flutter_challenge/src/data/constants/keys.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
+  static final kNavigationKey = GlobalKey<NavigatorState>();
   const AppRouter();
 
   void open(Widget view) {

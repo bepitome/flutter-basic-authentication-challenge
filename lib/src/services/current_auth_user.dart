@@ -1,13 +1,13 @@
 import 'package:basic_authentication_flutter_challenge/injection.dart';
+import 'package:basic_authentication_flutter_challenge/src/data/clients/hive_client.dart';
 import 'package:basic_authentication_flutter_challenge/src/data/constants/local_storage_constants.dart';
-import 'package:basic_authentication_flutter_challenge/src/domain/clients/local_storage_client.dart';
 import 'package:basic_authentication_flutter_challenge/src/services/auth_service.dart';
 
 class CurrenAuthtUser {
-  final LocalStorageClient storage;
+  final storage = HiveStorageClient.instance;
   final ditenation = 'authData';
 
-  const CurrenAuthtUser({required this.storage});
+  const CurrenAuthtUser();
 
   Future<int> getLocalUserId() async {
     final id = await storage.read(
