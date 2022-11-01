@@ -35,17 +35,12 @@ class _ProfilePage extends State<ProfilePage> {
               style: TextStyle(fontSize: 30),
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: 1,
-                itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    title: Text("${user.firstName} ${user.lastName}"),
-                    subtitle: Text("${user.email}\n${user.gender}"),
-                    trailing: Text("${user.company}"),
-                  );
-                },
+              child: ListTile(
+                title: Text("${user.firstName} ${user.lastName}"),
+                subtitle: Text("${user.email}\n${user.gender}"),
+                trailing: Text("${user.company}"),
               ),
-            )
+            ),
           ],
         ),
       ),
