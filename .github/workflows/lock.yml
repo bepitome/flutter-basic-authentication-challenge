@@ -25,6 +25,6 @@ jobs:
           pr-inactive-days: '14'
           github-token: ${{ github.token }}
           # Number of days of inactivity before a closed issue is locked.
-          pr-comment:: >
+          pr-comment: >
             This pull request has been automatically locked since there
             has not been any recent activity. Please request a new PR.
