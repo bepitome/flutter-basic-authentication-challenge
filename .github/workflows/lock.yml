@@ -1,0 +1,30 @@
+# Configuration for Lock Threads - https://github.com/dessant/lock-threads
+
+name: 'Lock Threads'
+
+# By specifying the access of one of the scopes, all of those that are not
+# specified are set to 'none'.
+permissions:
+  issues: write
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+
+jobs:
+  lock:
+    permissions:
+      issues: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    if: ${{ github.repository == 'bepitome/flutter-basic-authentication-challenge' }}
+    steps:
+      - uses: dessant/lock-threads@e460dfeb36e731f3aeb214be6b0c9a9d9a67eda6
+        with:
+          process-only: 'prs'
+          pr-inactive-days: '14'
+          github-token: ${{ github.token }}
+          # Number of days of inactivity before a closed issue is locked.
+          pr-comment:: >
+            This pull request has been automatically locked since there
+            has not been any recent activity. Please request a new PR.
